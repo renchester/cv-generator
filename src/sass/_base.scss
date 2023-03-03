@@ -1,0 +1,120 @@
+/* prettier-ignore */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+
+/* prettier-ignore */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  vertical-align: baseline;
+  font-family: inherit;
+  font-style: inherit;
+  color: inherit;
+  font-size: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* COLOR VARIABLES */
+
+  --color-primary: #ee7b7f;
+  --color-accent: #ff7d82;
+
+  --color-background: #e5e5e5;
+  --color-background-dark: #353535;
+  --color-light-1: #fff9f9;
+  --color-light-2: #f0f0f0;
+  --color-dark-1: #3a3b37;
+  --color-dark-2: #090909;
+
+  --color-text: #423c3a;
+  --color-text-light: #f2f5ff;
+
+  --color-grey-light-1: #e9e9e9; // Light background
+  --color-grey-light-2: #f2efee; // Light lines
+  --color-grey-light-3: #d3c7c3; // Light text (placeholder)
+  --color-grey-dark-1: #423c3a; // Normal text
+  --color-grey-dark-2: #636363; // Lighter text
+
+  --gradient: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+
+  /* FONT FAMILY VARIABLES */
+
+  --font-raleway: 'Raleway', Arial, Helvetica, sans-serif, monospace;
+  --font-open-sans: 'Open Sans', Arial, Helvetica, sans-serif, monospace;
+  --font-montserrat: 'Montserrat', 'Courier New', Arial, Helvetica, sans-serif,
+    monospace;
+  --font-inter: 'Inter', Arial, Helvetica, sans-serif, monospace;
+  --font-poppins: 'Poppins', Arial, Helvetica, sans-serif, monospace;
+
+  /* FONT SIZE VARIABLES */
+
+  // body font size
+  --text-base-size: 1em;
+
+  // type scale
+  --text-scale-ratio: 1.25;
+  --text-xxs: calc((1em / (var(--text-scale-ratio) * 1.35)));
+  --text-xs: calc((1em / var(--text-scale-ratio)));
+  --text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+  --text-md: calc(var(--text-sm) * var(--text-scale-ratio));
+  --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+  --text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+}
+
+#root {
+  display: grid;
+  min-height: 100vh;
+  width: 100vw;
+
+  background-color: var(--color-background-dark);
+  font-family: var(--font-poppins);
+}
