@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import BasicInfo from './BasicInfo';
 import ContactInfo from './ContactInfo';
 import EducationInfo from './EducationInfo';
@@ -8,30 +10,68 @@ import OtherInfo from './OtherInfo';
 function Editor() {
   return (
     <div className="editor">
-      <form className="form form__container form__basic-info">
+      <form
+        className="form form__container form__basic-info"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Basic Info</h1>
-        <BasicInfo />
+        <BasicInfo data={formData.basicInfo} handleChange={handleChange} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
       </form>
-      <form className="form form__container form__contact-info">
+      <form
+        className="form form__container form__contact-info"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Contact Info</h1>
-        <ContactInfo />
+        <ContactInfo data={formData.contactInfo} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
       </form>
-      <form className="form form__container form__education-info">
+      <form
+        className="form form__container form__education-info"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Education Background</h1>
-        <EducationInfo />
+        <EducationInfo data={formData.educationInfo} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
       </form>
-      <form className="form form__container form__experience-info">
+      <form
+        className="form form__container form__experience-info"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Work Experience</h1>
-        <ExperienceInfo />
+        <ExperienceInfo data={formData.experienceInfo} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
       </form>
-      <form className="form form__container form__skills-info">
+      <form
+        className="form form__container form__skills-info"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Technical Skills</h1>
-        <SkillsInfo />
+        <SkillsInfo data={formData.skillsInfo} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
       </form>
-      <form className="form form__container form__other-info">
-        <h1 className="form-title">Other Info</h1>
-        <OtherInfo />
-      </form>
+      {formData.otherInfo[0].category && (
+        <form
+          className="form form__container form__other-info"
+          onSubmit={handleSubmit}
+        >
+          <h1 className="form-title">Other Info</h1>
+          <OtherInfo data={formData.otherInfo} />
+          <button type="submit" className="btn btn__submit">
+            Set info
+          </button>
+        </form>
+      )}
     </div>
   );
 }

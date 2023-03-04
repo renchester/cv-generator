@@ -1,22 +1,20 @@
 function SkillsInfo() {
   return (
     <fieldset className="form-fieldset form__skills-info">
-      <label htmlFor="form-input__skill-category" className="form-label">
+      <label className="form-label">
         Add a skill category
         <input
           type="text"
           name="skillCategory"
-          id="form-input__skill-category"
           className="form-input form-input__skill-category"
           placeholder="Design"
         />
       </label>
-      <label htmlFor="form-input__skill" className="form-label">
+      <label className="form-label">
         Add a skill in Design Category
         <input
           type="text"
           name="skill"
-          id="form-input__skill"
           className="form-input form-input__skill"
           placeholder="Photoshop"
         />

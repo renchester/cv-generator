@@ -2,37 +2,36 @@ function OtherInfo() {
   return (
     <fieldset className="form-fieldset form__other-info">
       <span>
-        Only fill these out if you deem it important <br /> or if your CV
-        preview still has space
+        Only fill this out if you deem it important or if your CV preview <br />
+        still has space (e.g. Languages, Awards, Certifications)
       </span>
       <label htmlFor="form-input__interests" className="form-label">
         Interests
         <input
           type="text"
-          name="interests"
+          name=""
           id="form-input__interests"
           className="form-input form-input__interests"
           placeholder="Design"
         />
       </label>
-      <label htmlFor="form-input__languages" className="form-label">
-        Languages
+
+      <label className="form-label">
+        Add a skill category
         <input
           type="text"
-          name="languages"
-          id="form-input__languages"
-          className="form-input form-input__languages"
-          placeholder="English"
+          name="otherInfoCategory"
+          className="form-input form-input__other-info-category"
+          placeholder="Design"
         />
       </label>
-      <label htmlFor="form-input__awards" className="form-label">
-        Awards/Certifications
+      <label className="form-label">
+        Add a skill in Design Category
         <input
           type="text"
-          name="awards"
-          id="form-input__awards"
-          className="form-input form-input__awards"
-          placeholder="Design Award"
+          name="skill"
+          className="form-input form-input__other-info-item"
+          placeholder="Photoshop"
         />
       </label>
     </fieldset>
