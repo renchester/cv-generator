@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { nanoid } from 'nanoid';
+
 import Editor from './components/editors/Editor';
 import Preview from './components/preview/Preview';
 
@@ -18,14 +20,7 @@ function App() {
       location: '',
       linkedin: '',
     },
-    educationInfo: [
-      {
-        institution: '',
-        startingYear: '',
-        graduatingYear: '',
-        gpa: '',
-      },
-    ],
+    educationInfo: [],
     experienceInfo: [
       {
         jobTitle: '',
@@ -61,7 +56,33 @@ function App() {
     }));
   };
 
-  // const handleEducationInfoChanges = (e) => {};
+  const handleEducationInfoChanges = (e) => {};
+
+  const handleEducationInfoSubmit = (e) => {
+    e.preventDefault();
+
+    const newEducInfo = [...e.target.querySelectorAll('input')]
+      .map((field) => ({
+        [field.name]: field.value,
+      }))
+      .reduce((obj, item) => Object.assign(obj, { ...item }));
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      educationInfo: [
+        ...prevFormData.educationInfo,
+        {
+          id: nanoid(),
+          ...newEducInfo,
+        },
+      ],
+    }));
+
+    // Reset form
+    e.target.closest('form').reset();
+
+    // Display the added info
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,6 +95,8 @@ function App() {
         handleSubmit={handleSubmit}
         handleBasicInfoChanges={handleBasicInfoChanges}
         handleContactInfoChanges={handleContactInfoChanges}
+        handleEducationInfoChanges={handleEducationInfoChanges}
+        handleEducationInfoSubmit={handleEducationInfoSubmit}
       />
       <Preview formData={formData} />
     </div>
