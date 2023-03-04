@@ -11,12 +11,22 @@ function EducationInfo() {
         />
       </label>
       <label className="form-label">
+        Program/Degree/Course:
+        <input
+          type="text"
+          name="degreeProgram"
+          className="form-input form-input__degree-program"
+          placeholder="B.A. in Psychology/Doctorate in Philosophy"
+        />
+      </label>
+      <label className="form-label">
         Starting Year:
         <input
           type="month"
           name="startingYear"
           className="form-input form-input__starting-year"
           min="1900-01"
+          value="2005-10"
           placeholder="2010"
         />
       </label>
@@ -27,6 +37,7 @@ function EducationInfo() {
           name="graduatingYear"
           className="form-input form-input__graduating-year"
           min="1900-01"
+          value="2000-10"
           placeholder="2014"
         />
       </label>

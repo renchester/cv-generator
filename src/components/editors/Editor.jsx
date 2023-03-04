@@ -11,10 +11,15 @@ function Editor(props) {
     handleSubmit,
     handleBasicInfoChanges,
     handleContactInfoChanges,
+    handleEducationInfoChanges,
+    handleEducationInfoSubmit,
   } = props;
 
   return (
     <div className="editor">
+      {/*
+        BASIC INFO FORM 
+       */}
       <form
         className="form form__container form__basic-info"
         onSubmit={handleSubmit}
@@ -25,6 +30,9 @@ function Editor(props) {
           handleChange={handleBasicInfoChanges}
         />
       </form>
+      {/*
+        CONTACT INFO FORM 
+      */}
       <form
         className="form form__container form__contact-info"
         onSubmit={handleSubmit}
@@ -34,20 +42,26 @@ function Editor(props) {
           data={formData.contactInfo}
           handleChange={handleContactInfoChanges}
         />
-        <button type="submit" className="btn btn__submit">
-          Set info
-        </button>
       </form>
+      {/*
+        EDUCATION INFO FORM 
+      */}
       <form
         className="form form__container form__education-info"
-        onSubmit={handleSubmit}
+        onSubmit={handleEducationInfoSubmit}
       >
         <h1 className="form-title">Education Background</h1>
-        <EducationInfo data={formData.educationInfo} />
+        <EducationInfo
+          data={formData.educationInfo}
+          handleChange={handleEducationInfoChanges}
+        />
         <button type="submit" className="btn btn__submit">
-          Set info
+          Add another
         </button>
       </form>
+      {/*
+        EXPERIENCE INFO FORM 
+      */}
       <form
         className="form form__container form__experience-info"
         onSubmit={handleSubmit}
@@ -58,6 +72,9 @@ function Editor(props) {
           Set info
         </button>
       </form>
+      {/*
+        SKILLS INFO FORM 
+      */}
       <form
         className="form form__container form__skills-info"
         onSubmit={handleSubmit}
@@ -68,18 +85,24 @@ function Editor(props) {
           Set info
         </button>
       </form>
-      {formData.otherInfo[0].category && (
-        <form
-          className="form form__container form__other-info"
-          onSubmit={handleSubmit}
-        >
-          <h1 className="form-title">Other Info</h1>
-          <OtherInfo data={formData.otherInfo} />
-          <button type="submit" className="btn btn__submit">
-            Set info
-          </button>
-        </form>
-      )}
+      {/*
+        OTHER INFO FORM 
+      */}
+      <form
+        className="form form__container form__other-info"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="form-title">Other Info</h1>
+        <span>
+          Only fill this out if you deem it important or if your CV preview
+          still has space (e.g. Languages, Awards, Certifications)
+        </span>
+
+        <OtherInfo data={formData.otherInfo} />
+        <button type="submit" className="btn btn__submit">
+          Set info
+        </button>
+      </form>
     </div>
   );
 }
