@@ -1,4 +1,6 @@
-function ContactInfo() {
+function ContactInfo(props) {
+  const { data, handleChange } = props;
+
   return (
     <fieldset className="form-fieldset form__contact-info">
       <label className="form-label">
@@ -8,6 +10,8 @@ function ContactInfo() {
           name="email"
           className="form-input form-input__email"
           placeholder="johnappleseed@site.com"
+          onChange={handleChange}
+          value={data.email}
         />
       </label>
       <label className="form-label">
@@ -16,6 +20,8 @@ function ContactInfo() {
           type="number"
           name="phoneNumber"
           className="form-input form-input__phone-number"
+          onChange={handleChange}
+          value={data.phoneNumber}
         />
       </label>
       <label className="form-label">
@@ -25,6 +31,8 @@ function ContactInfo() {
           name="location"
           className="form-input form-input__location"
           placeholder="London, UK"
+          onChange={handleChange}
+          value={data.location}
         />
       </label>
       <label className="form-label">
@@ -34,6 +42,8 @@ function ContactInfo() {
           name="linkedin"
           className="form-input form-input__linkedin"
           placeholder="linkedin.com/johnappleseed"
+          onChange={handleChange}
+          value={data.linkedin}
         />
       </label>
     </fieldset>
