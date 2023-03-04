@@ -1,7 +1,6 @@
 function SkillsInfo() {
   return (
     <fieldset className="form-fieldset form__skills-info">
-      <legend className="form-legend">Technical Skills</legend>
       <label htmlFor="form-input__skill-category" className="form-label">
         Add a skill category
         <input

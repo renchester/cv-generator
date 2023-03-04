@@ -1,8 +1,6 @@
 function ExperienceInfo() {
   return (
     <fieldset className="form-fieldset form__experience-info">
-      <legend className="form-legend">Work Experience</legend>
-
       <label htmlFor="form-input__job-title" className="form-label">
         Title/Position:
         <input

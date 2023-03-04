@@ -1,8 +1,6 @@
 function EducationInfo() {
   return (
     <fieldset className="form-fieldset form__education-info">
-      <legend className="form-legend">Education Background</legend>
-
       <label htmlFor="form-input__education-institution" className="form-label">
         University/Institution/Organization:
         <input

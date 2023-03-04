@@ -1,7 +1,6 @@
 function OtherInfo() {
   return (
     <fieldset className="form-fieldset form__other-info">
-      <legend className="form-legend">Other Info</legend>
       <span>
         Only fill these out if you deem it important <br /> or if your CV
         preview still has space

@@ -1,7 +1,6 @@
 function ContactInfo() {
   return (
     <fieldset className="form-fieldset form__contact-info">
-      <legend className="form-legend">Contact Info</legend>
       <label htmlFor="form-input__email" className="form-label">
         Email:
         <input
