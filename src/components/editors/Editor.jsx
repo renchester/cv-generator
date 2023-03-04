@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import BasicInfo from './BasicInfo';
 import ContactInfo from './ContactInfo';
 import EducationInfo from './EducationInfo';
@@ -7,7 +5,14 @@ import ExperienceInfo from './ExperienceInfo';
 import SkillsInfo from './SkillsInfo';
 import OtherInfo from './OtherInfo';
 
-function Editor() {
+function Editor(props) {
+  const {
+    formData,
+    handleSubmit,
+    handleBasicInfoChanges,
+    handleContactInfoChanges,
+  } = props;
+
   return (
     <div className="editor">
       <form
@@ -15,17 +20,20 @@ function Editor() {
         onSubmit={handleSubmit}
       >
         <h1 className="form-title">Basic Info</h1>
-        <BasicInfo data={formData.basicInfo} handleChange={handleChange} />
-        <button type="submit" className="btn btn__submit">
-          Set info
-        </button>
+        <BasicInfo
+          data={formData.basicInfo}
+          handleChange={handleBasicInfoChanges}
+        />
       </form>
       <form
         className="form form__container form__contact-info"
         onSubmit={handleSubmit}
       >
         <h1 className="form-title">Contact Info</h1>
-        <ContactInfo data={formData.contactInfo} />
+        <ContactInfo
+          data={formData.contactInfo}
+          handleChange={handleContactInfoChanges}
+        />
         <button type="submit" className="btn btn__submit">
           Set info
         </button>
