@@ -21,13 +21,7 @@ function App() {
       linkedin: '',
     },
     educationInfo: [],
-    experienceInfo: [
-      {
-        jobTitle: '',
-        company: '',
-        jobSpecifics: [],
-      },
-    ],
+    experienceInfo: [],
     skillsInfo: [{ category: '', skills: [] }],
     otherInfo: [{ category: '', item: [] }],
   });
@@ -89,6 +83,39 @@ function App() {
     }));
   };
 
+  const handleExperienceInfoSubmit = (e) => {
+    e.preventDefault();
+
+    const newEducInfo = [...e.target.querySelectorAll('input')]
+      .map((field) => ({
+        [field.name]: field.value,
+      }))
+      .reduce((obj, item) => Object.assign(obj, { ...item }));
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      experienceInfo: [
+        ...prevFormData.experienceInfo,
+        {
+          id: nanoid(),
+          ...newEducInfo,
+        },
+      ],
+    }));
+
+    // Reset form
+    e.target.closest('form').reset();
+  };
+
+  const deleteExpInfo = (id) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      experienceInfo: prevFormData.experienceInfo.filter(
+        (item) => item.id !== id,
+      ),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -102,6 +129,8 @@ function App() {
         handleContactInfoChanges={handleContactInfoChanges}
         handleEducationInfoSubmit={handleEducationInfoSubmit}
         deleteEducInfo={deleteEducInfo}
+        handleExperienceInfoSubmit={handleExperienceInfoSubmit}
+        deleteExpInfo={deleteExpInfo}
       />
       <Preview formData={formData} />
     </div>
