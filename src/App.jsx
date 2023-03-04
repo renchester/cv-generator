@@ -56,8 +56,6 @@ function App() {
     }));
   };
 
-  const handleEducationInfoChanges = (e) => {};
-
   const handleEducationInfoSubmit = (e) => {
     e.preventDefault();
 
@@ -80,8 +78,15 @@ function App() {
 
     // Reset form
     e.target.closest('form').reset();
+  };
 
-    // Display the added info
+  const deleteEducInfo = (id) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      educationInfo: prevFormData.educationInfo.filter(
+        (item) => item.id !== id,
+      ),
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -95,8 +100,8 @@ function App() {
         handleSubmit={handleSubmit}
         handleBasicInfoChanges={handleBasicInfoChanges}
         handleContactInfoChanges={handleContactInfoChanges}
-        handleEducationInfoChanges={handleEducationInfoChanges}
         handleEducationInfoSubmit={handleEducationInfoSubmit}
+        deleteEducInfo={deleteEducInfo}
       />
       <Preview formData={formData} />
     </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import CompletedBackgroundForm from './CompletedBackgroundForm';
 
 function EducationInfo(props) {
-  const { data, handleSubmit } = props;
+  const { data, handleSubmit, deleteEducInfo } = props;
 
   const emptyState = {
     institution: '',
@@ -23,13 +24,27 @@ function EducationInfo(props) {
     }));
   };
 
+  const editEducInfo = (id) => {
+    // Show warning
+    deleteEducInfo(id);
+
+    setEducInfo(data.find((item) => item.id === id));
+  };
+
   const submitEducInfo = (e) => {
     handleSubmit(e);
     setEducInfo(emptyState);
   };
 
-  const markup = data.map((addedInfo) => (
-    <span key={addedInfo.key}>{addedInfo.institution}</span>
+  const addedInfoMarkup = data.map((addedInfo) => (
+    <CompletedBackgroundForm
+      key={addedInfo.id}
+      id={addedInfo.id}
+      handleDelete={deleteEducInfo}
+      handleEdit={editEducInfo}
+      mainText={addedInfo.institution}
+      subText={addedInfo.degreeProgram}
+    />
   ));
 
   return (
@@ -38,7 +53,7 @@ function EducationInfo(props) {
       onSubmit={submitEducInfo}
     >
       <h1 className="form-title">Education Background</h1>
-      {data.length ? markup : ''}
+      {data.length ? addedInfoMarkup : ''}
       <fieldset className="form-fieldset form__education-info">
         <label className="form-label">
           University/Institution/Organization:

@@ -13,6 +13,7 @@ function Editor(props) {
     handleContactInfoChanges,
     handleEducationInfoChanges,
     handleEducationInfoSubmit,
+    deleteEducInfo,
   } = props;
 
   return (
@@ -51,6 +52,7 @@ function Editor(props) {
         data={formData.educationInfo}
         handleChange={handleEducationInfoChanges}
         handleSubmit={handleEducationInfoSubmit}
+        deleteEducInfo={deleteEducInfo}
       />
 
       {/*
