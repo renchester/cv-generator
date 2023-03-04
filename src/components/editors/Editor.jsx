@@ -46,19 +46,13 @@ function Editor(props) {
       {/*
         EDUCATION INFO FORM 
       */}
-      <form
-        className="form form__container form__education-info"
-        onSubmit={handleEducationInfoSubmit}
-      >
-        <h1 className="form-title">Education Background</h1>
-        <EducationInfo
-          data={formData.educationInfo}
-          handleChange={handleEducationInfoChanges}
-        />
-        <button type="submit" className="btn btn__submit">
-          Add another
-        </button>
-      </form>
+
+      <EducationInfo
+        data={formData.educationInfo}
+        handleChange={handleEducationInfoChanges}
+        handleSubmit={handleEducationInfoSubmit}
+      />
+
       {/*
         EXPERIENCE INFO FORM 
       */}
