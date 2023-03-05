@@ -3,14 +3,14 @@ import CompletedBackgroundForm from './CompletedBackgroundForm';
 
 function EducationInfo(props) {
   const { data, handleSubmit, deleteEducInfo } = props;
-  const type = 'educationInfo';
+  const infoType = 'educationInfo';
 
   const emptyState = {
     institution: '',
     degreeProgram: '',
     startingYear: '',
     graduatingYear: '',
-    ongoing: false,
+    onGoing: true,
     gpa: '',
     id: '',
   };
@@ -18,24 +18,24 @@ function EducationInfo(props) {
   const [educInfo, setEducInfo] = useState(emptyState);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     setEducInfo((prevInfo) => ({
       ...prevInfo,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const editEducInfo = (id) => {
     // Show warning
-    deleteEducInfo(id, type);
+    deleteEducInfo(id, infoType);
 
     setEducInfo(data.find((item) => item.id === id));
   };
 
   const submitEducInfo = (e) => {
     // Submit local state to app state
-    handleSubmit(e, type);
+    handleSubmit(e, infoType);
 
     // Set local state to empty
     setEducInfo(emptyState);
@@ -49,7 +49,7 @@ function EducationInfo(props) {
       handleEdit={editEducInfo}
       mainText={addedInfo.institution}
       subText={addedInfo.degreeProgram}
-      type={type}
+      type={infoType}
     />
   ));
 
@@ -87,23 +87,33 @@ function EducationInfo(props) {
             name="startingYear"
             className="form-input form-input__starting-year"
             min="1900-01"
-            placeholder="2010"
             value={educInfo.startingYear || '2010-10'}
             onChange={handleChange}
           />
         </label>
         <label className="form-label">
-          Graduating Year:
+          On-going:
           <input
-            type="month"
-            name="graduatingYear"
-            className="form-input form-input__graduating-year"
-            min="1900-01"
-            placeholder="2014"
-            value={educInfo.graduatingYear || '2014-10'}
+            type="checkbox"
+            name="onGoing"
+            className="form-input form-input__ongoing"
             onChange={handleChange}
+            checked={educInfo.onGoing}
           />
         </label>
+        {!educInfo.onGoing && (
+          <label className="form-label">
+            Graduating Year:
+            <input
+              type="month"
+              name="graduatingYear"
+              className="form-input form-input__graduating-year"
+              min="1900-01"
+              value={educInfo.graduatingYear || '2014-10'}
+              onChange={handleChange}
+            />
+          </label>
+        )}
         <label className="form-label">
           GPA:
           <input
