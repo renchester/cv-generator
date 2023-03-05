@@ -1,5 +1,9 @@
 import { useState } from 'react';
+
+import { nanoid } from 'nanoid';
+
 import CompletedBackgroundForm from './CompletedBackgroundForm';
+import ItemBanner from './ItemBanner';
 
 function EducationInfo(props) {
   const { data, handleSubmit, deleteEducInfo } = props;
@@ -13,6 +17,8 @@ function EducationInfo(props) {
     onGoing: true,
     gpa: '',
     id: '',
+    additionalInfo: [],
+    currentInfoItem: '',
   };
 
   const [educInfo, setEducInfo] = useState(emptyState);
@@ -41,7 +47,30 @@ function EducationInfo(props) {
     setEducInfo(emptyState);
   };
 
-  const addedInfoMarkup = data.map((addedInfo) => (
+  const submitAddlInfo = (e) => {
+    const infoContent = e.target.previousElementSibling.value;
+
+    setEducInfo((prevInfo) => ({
+      ...prevInfo,
+      additionalInfo: [
+        ...prevInfo.additionalInfo,
+        {
+          id: nanoid(),
+          content: infoContent,
+        },
+      ],
+      currentInfoItem: '',
+    }));
+  };
+
+  const deleteAddlInfo = (id) => {
+    setEducInfo((prevInfo) => ({
+      ...prevInfo,
+      additionalInfo: prevInfo.additionalInfo.filter((item) => item.id !== id),
+    }));
+  };
+
+  const submittedInfoMarkup = data.map((addedInfo) => (
     <CompletedBackgroundForm
       key={addedInfo.id}
       id={addedInfo.id}
@@ -53,10 +82,19 @@ function EducationInfo(props) {
     />
   ));
 
+  const addlInfoMarkup = educInfo.additionalInfo.map((item) => (
+    <ItemBanner
+      key={item.id}
+      id={item.id}
+      name={item.content}
+      deleteItem={deleteAddlInfo}
+    />
+  ));
+
   return (
     <section className="form form__container form__education-info">
       <h1 className="form-title">Education Background</h1>
-      {data.length ? addedInfoMarkup : ''}
+      {data.length ? submittedInfoMarkup : ''}
       <fieldset className="form-fieldset form__education-info">
         <label className="form-label">
           University/Institution/Organization:
@@ -125,13 +163,33 @@ function EducationInfo(props) {
             onChange={handleChange}
           />
         </label>
+
+        <label className="form-label">
+          Additional info (e.g. awards, courses, thesis project)
+          {educInfo.additionalInfo.length ? addlInfoMarkup : ''}
+          <textarea
+            type="text"
+            name="currentInfoItem"
+            className="form-input form-input__addl-info-item"
+            placeholder="Awards: 1st Place, Competition; 2nd Place, Competition"
+            value={educInfo.currentInfoItem}
+            onChange={handleChange}
+          />
+          <button
+            type="button"
+            className="btn btn__submit"
+            onClick={submitAddlInfo}
+          >
+            Submit additional info
+          </button>
+        </label>
       </fieldset>
       <button
         type="submit"
         className="btn btn__submit"
         onClick={submitEducInfo}
       >
-        Add another
+        Submit education background
       </button>
     </section>
   );

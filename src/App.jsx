@@ -52,19 +52,26 @@ function App() {
 
   const submitBackgroundInfo = (e, type) => {
     const parentEl = e.target.closest('section');
+
     const newInfo = [...parentEl.querySelectorAll('input')]
       .map((field) => ({
         [field.name]: field.value,
       }))
       .reduce((obj, item) => Object.assign(obj, { ...item }));
 
+    const addlInfo = [
+      ...parentEl.querySelectorAll('.submitted-item__name'),
+    ].map((el) => ({ id: el.dataset.id, content: el.textContent }));
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [type]: [
         ...prevFormData[type],
         {
-          id: nanoid(),
           ...newInfo,
+          id: nanoid(),
+          additionalInfo: addlInfo,
+          currentInfoItem: '',
         },
       ],
     }));
