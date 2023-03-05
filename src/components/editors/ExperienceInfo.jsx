@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
+import { nanoid } from 'nanoid';
+
 import CompletedBackgroundForm from './CompletedBackgroundForm';
+import ItemBanner from './ItemBanner';
 
 function ExperienceInfo(props) {
   const { data, deleteExpInfo, handleSubmit } = props;
@@ -12,7 +15,8 @@ function ExperienceInfo(props) {
     startingYear: '',
     endingYear: '',
     onGoing: true,
-    jobSpecifics: [],
+    additionalInfo: [],
+    currentInfoItem: '',
   };
 
   const [expInfo, setExpInfo] = useState(emptyState);
@@ -38,22 +42,54 @@ function ExperienceInfo(props) {
     setExpInfo(emptyState);
   };
 
-  const addedInfoMarkup = data.map((addedInfo) => (
+  const submitAddlInfo = (e) => {
+    const infoContent = e.target.previousElementSibling.value;
+
+    setExpInfo((prevInfo) => ({
+      ...prevInfo,
+      additionalInfo: [
+        ...prevInfo.additionalInfo,
+        {
+          id: nanoid(),
+          content: infoContent,
+        },
+      ],
+      currentInfoItem: '',
+    }));
+  };
+
+  const deleteAddlInfo = (id) => {
+    setExpInfo((prevInfo) => ({
+      ...prevInfo,
+      additionalInfo: prevInfo.additionalInfo.filter((item) => item.id !== id),
+    }));
+  };
+
+  const submittedInfoMarkup = data.map((submittedInfo) => (
     <CompletedBackgroundForm
-      key={addedInfo.id}
-      id={addedInfo.id}
+      key={submittedInfo.id}
+      id={submittedInfo.id}
       handleDelete={deleteExpInfo}
       handleEdit={editExpInfo}
-      mainText={addedInfo.company}
-      subText={addedInfo.jobTitle}
+      mainText={submittedInfo.company}
+      subText={submittedInfo.jobTitle}
       type={infoType}
+    />
+  ));
+
+  const addlInfoMarkup = expInfo.additionalInfo.map((item) => (
+    <ItemBanner
+      key={item.id}
+      id={item.id}
+      name={item.content}
+      deleteItem={deleteAddlInfo}
     />
   ));
 
   return (
     <section className="form form__container form__experience-info">
       <h1 className="form-title">Work Experience</h1>
-      {data.length ? addedInfoMarkup : ''}
+      {data.length ? submittedInfoMarkup : ''}
       <fieldset className="form-fieldset form__experience-info">
         <label className="form-label">
           Title/Position:
@@ -113,19 +149,27 @@ function ExperienceInfo(props) {
         )}
 
         <label className="form-label">
-          List your duties and specifics in your job:
+          List your job responsibilities
+          {expInfo.additionalInfo.length ? addlInfoMarkup : ''}
           <input
             type="text"
-            name="jobSpecifics"
+            name="currentInfoItem"
+            placeholder="Did this one thing etc."
             className="form-input form-input__job-specifics"
-            placeholder="Mozilla Inc."
-            value={expInfo.jobSpecifics}
+            value={expInfo.currentInfoItem}
             onChange={handleChange}
           />
+          <button
+            type="button"
+            className="btn btn__submit"
+            onClick={submitAddlInfo}
+          >
+            Submit additional info
+          </button>
         </label>
       </fieldset>
       <button type="submit" className="btn btn__submit" onClick={submitExpInfo}>
-        Set info
+        Submit work experience
       </button>
     </section>
   );
