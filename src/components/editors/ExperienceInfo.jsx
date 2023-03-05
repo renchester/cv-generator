@@ -4,6 +4,7 @@ import CompletedBackgroundForm from './CompletedBackgroundForm';
 
 function ExperienceInfo(props) {
   const { data, deleteExpInfo, handleSubmit } = props;
+  const type = 'experienceInfo';
 
   const emptyState = {
     jobTitle: '',
@@ -24,13 +25,13 @@ function ExperienceInfo(props) {
 
   const editExpInfo = (id) => {
     // Show warning
-    deleteExpInfo(id);
+    deleteExpInfo(id, type);
 
     setExpInfo(data.find((item) => item.id === id));
   };
 
   const submitExpInfo = (e) => {
-    handleSubmit(e);
+    handleSubmit(e, type);
     setExpInfo(emptyState);
   };
 
@@ -42,14 +43,12 @@ function ExperienceInfo(props) {
       handleEdit={editExpInfo}
       mainText={addedInfo.company}
       subText={addedInfo.jobTitle}
+      type={type}
     />
   ));
 
   return (
-    <form
-      className="form form__container form__experience-info"
-      onSubmit={submitExpInfo}
-    >
+    <section className="form form__container form__experience-info">
       <h1 className="form-title">Work Experience</h1>
       {data.length ? addedInfoMarkup : ''}
       <fieldset className="form-fieldset form__experience-info">
@@ -87,10 +86,10 @@ function ExperienceInfo(props) {
           />
         </label>
       </fieldset>
-      <button type="submit" className="btn btn__submit">
+      <button type="submit" className="btn btn__submit" onClick={submitExpInfo}>
         Set info
       </button>
-    </form>
+    </section>
   );
 }
 

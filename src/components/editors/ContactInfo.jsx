@@ -1,11 +1,8 @@
 function ContactInfo(props) {
-  const { data, handleChange, handleSubmit } = props;
+  const { data, handleChange } = props;
 
   return (
-    <form
-      className="form form__container form__contact-info"
-      onSubmit={handleSubmit}
-    >
+    <form className="form form__container form__contact-info">
       <h1 className="form-title">Contact Info</h1>
 
       <fieldset className="form-fieldset form__contact-info">

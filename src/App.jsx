@@ -12,7 +12,7 @@ function App() {
       lastName: '',
       age: '',
       occupation: '',
-      selfDescription: '',
+      selfSummary: '',
     },
     contactInfo: {
       email: '',
@@ -50,10 +50,9 @@ function App() {
     }));
   };
 
-  const handleEducationInfoSubmit = (e) => {
-    e.preventDefault();
-
-    const newEducInfo = [...e.target.querySelectorAll('input')]
+  const submitBackgroundInfo = (e, type) => {
+    const parentEl = e.target.closest('section');
+    const newInfo = [...parentEl.querySelectorAll('input')]
       .map((field) => ({
         [field.name]: field.value,
       }))
@@ -61,62 +60,24 @@ function App() {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      educationInfo: [
-        ...prevFormData.educationInfo,
+      [type]: [
+        ...prevFormData[type],
         {
           id: nanoid(),
-          ...newEducInfo,
+          ...newInfo,
         },
       ],
     }));
-
-    // Reset form
-    e.target.closest('form').reset();
   };
 
-  const deleteEducInfo = (id) => {
+  const deleteBackgroundInfo = (id, type) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      educationInfo: prevFormData.educationInfo.filter(
-        (item) => item.id !== id,
-      ),
+      [type]: prevFormData[type].filter((item) => item.id !== id),
     }));
   };
 
-  const handleExperienceInfoSubmit = (e) => {
-    e.preventDefault();
-
-    const newEducInfo = [...e.target.querySelectorAll('input')]
-      .map((field) => ({
-        [field.name]: field.value,
-      }))
-      .reduce((obj, item) => Object.assign(obj, { ...item }));
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      experienceInfo: [
-        ...prevFormData.experienceInfo,
-        {
-          id: nanoid(),
-          ...newEducInfo,
-        },
-      ],
-    }));
-
-    // Reset form
-    e.target.closest('form').reset();
-  };
-
-  const deleteExpInfo = (id) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      experienceInfo: prevFormData.experienceInfo.filter(
-        (item) => item.id !== id,
-      ),
-    }));
-  };
-
-  const submitSkills = (e) => {
+  const submitSkillsInfo = (e) => {
     const parentEl = e.target.closest('section');
 
     const skillCategory = parentEl.querySelector(
@@ -148,22 +109,15 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div className="App">
       <Editor
         formData={formData}
-        handleSubmit={handleSubmit}
         handleBasicInfoChanges={handleBasicInfoChanges}
         handleContactInfoChanges={handleContactInfoChanges}
-        handleEducationInfoSubmit={handleEducationInfoSubmit}
-        deleteEducInfo={deleteEducInfo}
-        handleExperienceInfoSubmit={handleExperienceInfoSubmit}
-        deleteExpInfo={deleteExpInfo}
-        submitSkills={submitSkills}
+        submitBackgroundInfo={submitBackgroundInfo}
+        deleteBackgroundInfo={deleteBackgroundInfo}
+        submitSkillsInfo={submitSkillsInfo}
         deleteSkillsInfo={deleteSkillsInfo}
       />
       <Preview formData={formData} />

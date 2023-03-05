@@ -1,11 +1,8 @@
 function BasicInfo(props) {
-  const { handleChange, handleSubmit, data } = props;
+  const { data, handleChange } = props;
 
   return (
-    <form
-      className="form form__container form__basic-info"
-      onSubmit={handleSubmit}
-    >
+    <form className="form form__container form__basic-info">
       <h1 className="form-title">Basic Info</h1>
       <fieldset className="form-fieldset form__basic-info">
         <label className="form-label">
@@ -42,14 +39,13 @@ function BasicInfo(props) {
           />
         </label>
         <label className="form-label">
-          What do you do successfully, quickly
+          Give a summary about yourself
           <textarea
-            name="selfDescription"
+            name="selfSummary"
             cols="30"
             rows="10"
-            placeholder="Sample of what you do"
             onChange={handleChange}
-            value={data.selfDescription}
+            value={data.selfSummary}
           />
         </label>
       </fieldset>

@@ -1,5 +1,5 @@
 function CompletedBackgroundForm(props) {
-  const { handleDelete, handleEdit, mainText, subText, id } = props;
+  const { type, handleDelete, handleEdit, mainText, subText, id } = props;
 
   return (
     <div className="form__completed-bg form__completed-editable">
@@ -19,7 +19,7 @@ function CompletedBackgroundForm(props) {
       <button
         type="button"
         className="btn btn__delete-item"
-        onClick={() => handleDelete(id)}
+        onClick={() => handleDelete(id, type)}
       >
         Delete
       </button>

@@ -3,12 +3,14 @@ import CompletedBackgroundForm from './CompletedBackgroundForm';
 
 function EducationInfo(props) {
   const { data, handleSubmit, deleteEducInfo } = props;
+  const type = 'educationInfo';
 
   const emptyState = {
     institution: '',
     degreeProgram: '',
     startingYear: '',
     graduatingYear: '',
+    ongoing: false,
     gpa: '',
     id: '',
   };
@@ -26,13 +28,16 @@ function EducationInfo(props) {
 
   const editEducInfo = (id) => {
     // Show warning
-    deleteEducInfo(id);
+    deleteEducInfo(id, type);
 
     setEducInfo(data.find((item) => item.id === id));
   };
 
   const submitEducInfo = (e) => {
-    handleSubmit(e);
+    // Submit local state to app state
+    handleSubmit(e, type);
+
+    // Set local state to empty
     setEducInfo(emptyState);
   };
 
@@ -44,14 +49,12 @@ function EducationInfo(props) {
       handleEdit={editEducInfo}
       mainText={addedInfo.institution}
       subText={addedInfo.degreeProgram}
+      type={type}
     />
   ));
 
   return (
-    <form
-      className="form form__container form__education-info"
-      onSubmit={submitEducInfo}
-    >
+    <section className="form form__container form__education-info">
       <h1 className="form-title">Education Background</h1>
       {data.length ? addedInfoMarkup : ''}
       <fieldset className="form-fieldset form__education-info">
@@ -113,10 +116,14 @@ function EducationInfo(props) {
           />
         </label>
       </fieldset>
-      <button type="submit" className="btn btn__submit">
+      <button
+        type="submit"
+        className="btn btn__submit"
+        onClick={submitEducInfo}
+      >
         Add another
       </button>
-    </form>
+    </section>
   );
 }
 
