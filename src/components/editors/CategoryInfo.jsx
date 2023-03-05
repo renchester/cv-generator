@@ -1,13 +1,14 @@
 import { useState } from 'react';
+
 import { nanoid } from 'nanoid';
 
 import CompletedBackgroundForm from './CompletedBackgroundForm';
 import ItemBanner from './ItemBanner';
 
 function OtherInfo(props) {
-  const { data, handleSubmit, deleteCategory } = props;
+  const { data, handleSubmit, handleDelete, infoType } = props;
 
-  const emptyState = { category: '', items: [], currentItem: '' };
+  const emptyState = { category: '', items: [], currentItem: '', id: '' };
 
   const [categoryInfo, setCategoryInfo] = useState(emptyState);
 
@@ -22,7 +23,7 @@ function OtherInfo(props) {
 
   const editCategoryInfo = (id) => {
     // Show warning
-    deleteCategory(id);
+    handleDelete(id, infoType);
 
     const target = data.find((item) => item.id === id);
 
@@ -30,7 +31,7 @@ function OtherInfo(props) {
   };
 
   const submitCategoryInfo = (e) => {
-    handleSubmit(e);
+    handleSubmit(e, infoType);
     setCategoryInfo(emptyState);
   };
 
@@ -86,30 +87,36 @@ function OtherInfo(props) {
     <CompletedBackgroundForm
       key={submittedInfo.id}
       id={submittedInfo.id}
-      handleDelete={deleteCategory}
+      handleDelete={handleDelete}
       handleEdit={editCategoryInfo}
       mainText={submittedInfo.category}
       subText={submittedInfo.items[0].content}
+      type={infoType}
     />
   ));
 
   return (
     <section className="form form__container form__other-info">
-      <h1 className="form-title">Other Info</h1>
-      {data.length ? submittedCategoryMarkup : ''}
-      <span>
-        Only fill this out if you deem it important or if your CV preview still
-        has space
+      <h1 className="form-title">
+        {infoType === 'skillsInfo' ? 'Technical Skills' : 'Other Info'}
+      </h1>
+      <span className="form-subtitle">
+        {infoType === 'skillsInfo'
+          ? ''
+          : 'Only fill this out if you deem it important or if your CV preview still has space'}
       </span>
 
+      {data.length ? submittedCategoryMarkup : ''}
       <fieldset className="form-fieldset form__other-info">
         <label className="form-label">
-          Add a category (ex. Languages/Interests/Awards)
+          {infoType === 'skillsInfo'
+            ? ' Add a skill category'
+            : ' Add a category (ex. Languages/Interests/Awards)'}
           <input
             type="text"
             name="category"
-            className="form-input form-input__other-info-category"
-            placeholder="Languages"
+            className="form-input form-input__item-category"
+            placeholder={infoType === 'skillsInfo' ? 'Design' : 'Languages'}
             value={categoryInfo.category}
             onChange={handleChange}
           />
@@ -117,14 +124,17 @@ function OtherInfo(props) {
 
         {categoryInfo.category && (
           <label className="form-label">
-            Add an itemf in {categoryInfo.category}
+            Add {infoType === 'skillsInfo' ? 'a skill' : 'an item'} in{' '}
+            {categoryInfo.category}
             <div className="form-input__submitted-items">
               {categoryInfo.items.length ? itemBanners : ''}
               <input
                 type="text"
                 name="currentItem"
                 className="form-input form-input__items form-input__cumulative"
-                placeholder="Photoshop"
+                placeholder={
+                  infoType === 'skillsInfo' ? 'Photoshop' : 'English(Fluent)'
+                }
                 onKeyDown={submitItemKey}
                 onChange={handleChange}
                 value={categoryInfo.currentItem}
@@ -146,7 +156,7 @@ function OtherInfo(props) {
         className="btn btn__submit"
         onClick={submitCategoryInfo}
       >
-        Set info
+        Submit {infoType === 'skillsInfo' ? 'skill info' : 'info'}
       </button>
     </section>
   );

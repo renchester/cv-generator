@@ -2,8 +2,7 @@ import BasicInfo from './BasicInfo';
 import ContactInfo from './ContactInfo';
 import EducationInfo from './EducationInfo';
 import ExperienceInfo from './ExperienceInfo';
-import SkillsInfo from './SkillsInfo';
-import OtherInfo from './OtherInfo';
+import CategoryInfo from './CategoryInfo';
 
 function Editor(props) {
   const {
@@ -12,8 +11,8 @@ function Editor(props) {
     handleContactInfoChanges,
     submitBackgroundInfo,
     deleteBackgroundInfo,
-    submitCategory,
-    deleteCategory,
+    submitCategoryInfo,
+    deleteCategoryInfo,
   } = props;
 
   return (
@@ -40,16 +39,18 @@ function Editor(props) {
         deleteExpInfo={deleteBackgroundInfo}
       />
 
-      <SkillsInfo
+      <CategoryInfo
         data={formData.skillsInfo}
-        handleSubmit={submitCategory}
-        deleteSkillsInfo={deleteCategory}
+        handleSubmit={submitCategoryInfo}
+        handleDelete={deleteCategoryInfo}
+        infoType="skillsInfo"
       />
 
-      <OtherInfo
+      <CategoryInfo
         data={formData.otherInfo}
-        handleSubmit={submitCategory}
-        deleteCategory={deleteCategory}
+        handleSubmit={submitCategoryInfo}
+        handleDelete={deleteCategoryInfo}
+        infoType="otherInfo"
       />
     </div>
   );

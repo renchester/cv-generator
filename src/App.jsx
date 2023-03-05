@@ -23,7 +23,7 @@ function App() {
     educationInfo: [],
     experienceInfo: [],
     skillsInfo: [],
-    otherInfo: [{ category: '', item: [] }],
+    otherInfo: [],
   });
 
   const handleBasicInfoChanges = (e) => {
@@ -84,35 +84,33 @@ function App() {
     }));
   };
 
-  const submitSkillsInfo = (e) => {
+  const submitCategoryInfo = (e, type) => {
     const parentEl = e.target.closest('section');
 
-    const skillCategory = parentEl.querySelector(
-      '.form-input__skill-category',
-    ).value;
-    const skillsSubmitted = [
+    const category = parentEl.querySelector('.form-input__item-category').value;
+    const submittedItems = [
       ...parentEl.querySelectorAll('.submitted-item__name'),
-    ].map((el) => ({ name: el.textContent, id: el.dataset.id }));
+    ].map((el) => ({ content: el.textContent, id: el.dataset.id }));
 
-    if (!skillCategory) return;
+    if (!category) return;
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      skillsInfo: [
-        ...prevFormData.skillsInfo,
+      [type]: [
+        ...prevFormData[type],
         {
-          category: skillCategory,
-          skills: skillsSubmitted,
+          category,
+          items: submittedItems,
           id: nanoid(),
         },
       ],
     }));
   };
 
-  const deleteSkillsInfo = (id) => {
+  const deleteCategoryInfo = (id, type) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      skillsInfo: prevFormData.skillsInfo.filter((item) => item.id !== id),
+      [type]: prevFormData[type].filter((item) => item.id !== id),
     }));
   };
 
@@ -124,8 +122,8 @@ function App() {
         handleContactInfoChanges={handleContactInfoChanges}
         submitBackgroundInfo={submitBackgroundInfo}
         deleteBackgroundInfo={deleteBackgroundInfo}
-        submitSkillsInfo={submitSkillsInfo}
-        deleteSkillsInfo={deleteSkillsInfo}
+        submitCategoryInfo={submitCategoryInfo}
+        deleteCategoryInfo={deleteCategoryInfo}
       />
       <Preview formData={formData} />
     </div>
