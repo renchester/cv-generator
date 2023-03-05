@@ -15,6 +15,8 @@ function Editor(props) {
     deleteEducInfo,
     handleExperienceInfoSubmit,
     deleteExpInfo,
+    submitSkills,
+    deleteSkillsInfo,
   } = props;
 
   return (
@@ -22,29 +24,23 @@ function Editor(props) {
       {/*
         BASIC INFO FORM 
        */}
-      <form
-        className="form form__container form__basic-info"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="form-title">Basic Info</h1>
-        <BasicInfo
-          data={formData.basicInfo}
-          handleChange={handleBasicInfoChanges}
-        />
-      </form>
+
+      <BasicInfo
+        data={formData.basicInfo}
+        handleChange={handleBasicInfoChanges}
+        handleSubmit={handleSubmit}
+      />
+
       {/*
         CONTACT INFO FORM 
       */}
-      <form
-        className="form form__container form__contact-info"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="form-title">Contact Info</h1>
-        <ContactInfo
-          data={formData.contactInfo}
-          handleChange={handleContactInfoChanges}
-        />
-      </form>
+
+      <ContactInfo
+        data={formData.contactInfo}
+        handleChange={handleContactInfoChanges}
+        handleSubmit={handleSubmit}
+      />
+
       {/*
         EDUCATION INFO FORM 
       */}
@@ -68,16 +64,13 @@ function Editor(props) {
       {/*
         SKILLS INFO FORM 
       */}
-      <form
-        className="form form__container form__skills-info"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="form-title">Technical Skills</h1>
-        <SkillsInfo data={formData.skillsInfo} />
-        <button type="submit" className="btn btn__submit">
-          Set info
-        </button>
-      </form>
+
+      <SkillsInfo
+        data={formData.skillsInfo}
+        handleSubmit={submitSkills}
+        deleteSkillsInfo={deleteSkillsInfo}
+      />
+
       {/*
         OTHER INFO FORM 
       */}

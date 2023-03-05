@@ -22,7 +22,7 @@ function App() {
     },
     educationInfo: [],
     experienceInfo: [],
-    skillsInfo: [{ category: '', skills: [] }],
+    skillsInfo: [],
     otherInfo: [{ category: '', item: [] }],
   });
 
@@ -116,6 +116,38 @@ function App() {
     }));
   };
 
+  const submitSkills = (e) => {
+    const parentEl = e.target.closest('section');
+
+    const skillCategory = parentEl.querySelector(
+      '.form-input__skill-category',
+    ).value;
+    const skillsSubmitted = [
+      ...parentEl.querySelectorAll('.submitted-item__name'),
+    ].map((el) => ({ name: el.textContent, id: el.dataset.id }));
+
+    if (!skillCategory) return;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      skillsInfo: [
+        ...prevFormData.skillsInfo,
+        {
+          category: skillCategory,
+          skills: skillsSubmitted,
+          id: nanoid(),
+        },
+      ],
+    }));
+  };
+
+  const deleteSkillsInfo = (id) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      skillsInfo: prevFormData.skillsInfo.filter((item) => item.id !== id),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -131,6 +163,8 @@ function App() {
         deleteEducInfo={deleteEducInfo}
         handleExperienceInfoSubmit={handleExperienceInfoSubmit}
         deleteExpInfo={deleteExpInfo}
+        submitSkills={submitSkills}
+        deleteSkillsInfo={deleteSkillsInfo}
       />
       <Preview formData={formData} />
     </div>
