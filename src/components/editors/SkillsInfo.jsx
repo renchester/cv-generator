@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import CompletedBackgroundForm from './CompletedBackgroundForm';
+import ItemBanner from './ItemBanner';
 
 function SkillsInfo(props) {
   const { data, handleSubmit, deleteSkillsInfo } = props;
@@ -34,16 +35,32 @@ function SkillsInfo(props) {
     setSkillsInfo(emptyState);
   };
 
-  const submitSkill = (e) => {
+  const submitSkillKey = (e) => {
     if (e.key !== 'Enter') return;
 
-    setSkillsInfo((prevSkillsInfo) => ({
-      ...prevSkillsInfo,
+    setSkillsInfo((prevInfo) => ({
+      ...prevInfo,
       skills: [
-        ...prevSkillsInfo.skills,
+        ...prevInfo.skills,
         {
           id: nanoid(),
-          name: e.target.value,
+          content: e.target.value,
+        },
+      ],
+      currentSkill: '',
+    }));
+  };
+
+  const submitSkillClick = (e) => {
+    const skillContent = e.target.previousElementSibling.value;
+
+    setSkillsInfo((prevInfo) => ({
+      ...prevInfo,
+      skills: [
+        ...prevInfo.skills,
+        {
+          id: nanoid(),
+          content: skillContent,
         },
       ],
       currentSkill: '',
@@ -57,19 +74,13 @@ function SkillsInfo(props) {
     }));
   };
 
-  const skillsEl = skillsInfo.skills.map((item) => (
-    <div key={item.id} className="submitted-item__wrapper">
-      <span className="submitted-item__name" data-id={item.id}>
-        {item.name}
-      </span>
-      <button
-        className="submitted-item__delete"
-        type="button"
-        onMouseDown={() => deleteSkill(item.id)}
-      >
-        X
-      </button>
-    </div>
+  const skillBanners = skillsInfo.skills.map((item) => (
+    <ItemBanner
+      key={item.id}
+      id={item.id}
+      name={item.content}
+      deleteItem={deleteSkill}
+    />
   ));
 
   const submittedSkillsInfoMarkup = data.map((submittedInfo) => (
@@ -104,16 +115,23 @@ function SkillsInfo(props) {
           <label className="form-label">
             Add a skill in {skillsInfo.category}
             <div className="form-input__submitted-items form-input__submitted-skills">
-              {skillsInfo.skills.length ? skillsEl : ''}
+              {skillsInfo.skills.length ? skillBanners : ''}
               <input
                 type="text"
                 name="currentSkill"
                 className="form-input form-input__skill form-input__cumulative"
                 placeholder="Photoshop"
-                onKeyDown={submitSkill}
+                onKeyDown={submitSkillKey}
                 onChange={handleChange}
                 value={skillsInfo.currentSkill}
               />
+              <button
+                type="button"
+                className="btn btn__submit"
+                onClick={submitSkillClick}
+              >
+                +
+              </button>
             </div>
           </label>
         )}
@@ -123,7 +141,7 @@ function SkillsInfo(props) {
         className="btn btn__submit"
         onClick={submitSkillsInfo}
       >
-        Add another category
+        Submit Category
       </button>
     </section>
   );
