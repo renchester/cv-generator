@@ -90,7 +90,7 @@ function SkillsInfo(props) {
       handleDelete={deleteSkillsInfo}
       handleEdit={editSkillsInfo}
       mainText={submittedInfo.category}
-      subText={submittedInfo.skills[0].name}
+      subText={submittedInfo.skills[0].content}
     />
   ));
 

@@ -12,8 +12,8 @@ function Editor(props) {
     handleContactInfoChanges,
     submitBackgroundInfo,
     deleteBackgroundInfo,
-    submitSkillsInfo,
-    deleteSkillsInfo,
+    submitCategory,
+    deleteCategory,
   } = props;
 
   return (
@@ -42,22 +42,15 @@ function Editor(props) {
 
       <SkillsInfo
         data={formData.skillsInfo}
-        handleSubmit={submitSkillsInfo}
-        deleteSkillsInfo={deleteSkillsInfo}
+        handleSubmit={submitCategory}
+        deleteSkillsInfo={deleteCategory}
       />
 
-      <form className="form form__container form__other-info">
-        <h1 className="form-title">Other Info</h1>
-        <span>
-          Only fill this out if you deem it important or if your CV preview
-          still has space (e.g. Languages, Awards, Certifications)
-        </span>
-
-        <OtherInfo data={formData.otherInfo} />
-        <button type="submit" className="btn btn__submit">
-          Set info
-        </button>
-      </form>
+      <OtherInfo
+        data={formData.otherInfo}
+        handleSubmit={submitCategory}
+        deleteCategory={deleteCategory}
+      />
     </div>
   );
 }
