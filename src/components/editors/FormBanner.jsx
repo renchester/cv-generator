@@ -1,4 +1,4 @@
-function CompletedBackgroundForm(props) {
+function FormBanner(props) {
   const { type, handleDelete, handleEdit, mainText, subText, id } = props;
 
   return (
@@ -27,4 +27,4 @@ function CompletedBackgroundForm(props) {
   );
 }
 
-export default CompletedBackgroundForm;
+export default FormBanner;

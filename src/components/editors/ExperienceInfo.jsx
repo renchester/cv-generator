@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
-import CompletedBackgroundForm from './CompletedBackgroundForm';
+import FormBanner from './FormBanner';
 import ItemBanner from './ItemBanner';
 
 function ExperienceInfo(props) {
@@ -75,7 +75,7 @@ function ExperienceInfo(props) {
   };
 
   const submittedInfoMarkup = data.map((submittedInfo) => (
-    <CompletedBackgroundForm
+    <FormBanner
       key={submittedInfo.id}
       id={submittedInfo.id}
       handleDelete={deleteExpInfo}
