@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
 import FormBanner from './FormBanner';
 import ItemBanner from './ItemBanner';
 
-function OtherInfo(props) {
+function CategoryInfo(props) {
   const { data, handleSubmit, handleDelete, infoType } = props;
 
   const emptyState = { category: '', items: [], currentItem: '', id: '' };
 
-  const [categoryInfo, setCategoryInfo] = useState(emptyState);
+  const [categoryInfo, setCategoryInfo] = useState(
+    JSON.parse(localStorage.getItem(`cv${infoType}`)) || emptyState,
+  );
+
+  useEffect(() => {
+    localStorage.setItem(`cv${infoType}`, JSON.stringify(categoryInfo));
+  }, [categoryInfo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -166,4 +172,4 @@ function OtherInfo(props) {
   );
 }
 
-export default OtherInfo;
+export default CategoryInfo;

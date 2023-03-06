@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
@@ -21,7 +21,9 @@ function EducationInfo(props) {
     currentInfoItem: '',
   };
 
-  const [educInfo, setEducInfo] = useState(emptyState);
+  const [educInfo, setEducInfo] = useState(
+    JSON.parse(localStorage.getItem('cvEducationInfo')) || emptyState,
+  );
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,6 +33,10 @@ function EducationInfo(props) {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+
+  useEffect(() => {
+    localStorage.setItem('cvEducationInfo', JSON.stringify(educInfo));
+  }, [educInfo]);
 
   const editEducInfo = (id) => {
     // Show warning

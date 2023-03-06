@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
@@ -6,25 +6,31 @@ import Editor from './components/editors/Editor';
 import Preview from './components/preview/Preview';
 
 function App() {
-  const [formData, setFormData] = useState({
-    basicInfo: {
-      firstName: '',
-      lastName: '',
-      age: '',
-      occupation: '',
-      selfSummary: '',
+  const [formData, setFormData] = useState(
+    JSON.parse(localStorage.getItem('cvFormData')) || {
+      basicInfo: {
+        firstName: '',
+        lastName: '',
+        age: '',
+        occupation: '',
+        selfSummary: '',
+      },
+      contactInfo: {
+        email: '',
+        phoneNumber: '',
+        location: '',
+        linkedin: '',
+      },
+      educationInfo: [],
+      experienceInfo: [],
+      skillsInfo: [],
+      otherInfo: [],
     },
-    contactInfo: {
-      email: '',
-      phoneNumber: '',
-      location: '',
-      linkedin: '',
-    },
-    educationInfo: [],
-    experienceInfo: [],
-    skillsInfo: [],
-    otherInfo: [],
-  });
+  );
+
+  useEffect(() => {
+    localStorage.setItem('cvFormData', JSON.stringify(formData));
+  }, [formData]);
 
   const handleBasicInfoChanges = (e) => {
     const { name, value } = e.target;

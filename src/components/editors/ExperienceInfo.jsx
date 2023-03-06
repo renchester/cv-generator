@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
@@ -19,7 +19,13 @@ function ExperienceInfo(props) {
     currentInfoItem: '',
   };
 
-  const [expInfo, setExpInfo] = useState(emptyState);
+  const [expInfo, setExpInfo] = useState(
+    JSON.parse(localStorage.getItem('cvExperienceInfo')) || emptyState,
+  );
+
+  useEffect(() => {
+    localStorage.setItem('cvExperienceInfo', JSON.stringify(expInfo));
+  }, [expInfo]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
