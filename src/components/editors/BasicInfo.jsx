@@ -6,7 +6,7 @@ function BasicInfo(props) {
       <h1 className="form-title">Basic Info</h1>
       <fieldset className="form-fieldset form__basic-info">
         <label className="form-label">
-          First name:
+          <span className="form-label__title">First name:</span>
           <input
             type="text"
             name="firstName"
@@ -17,7 +17,7 @@ function BasicInfo(props) {
           />
         </label>
         <label className="form-label">
-          Last name:
+          <span className="form-label__title">Last name:</span>
           <input
             type="text"
             name="lastName"
@@ -28,7 +28,7 @@ function BasicInfo(props) {
           />
         </label>
         <label className="form-label">
-          Professional title:
+          <span className="form-label__title">Professional title:</span>
           <input
             type="text"
             name="occupation"
@@ -39,11 +39,14 @@ function BasicInfo(props) {
           />
         </label>
         <label className="form-label">
-          Give a summary about yourself
+          <span className="form-label__title">
+            Give a summary about yourself
+          </span>
           <textarea
             name="selfSummary"
             cols="30"
             rows="10"
+            className="form-input form-input__self-summary"
             onChange={handleChange}
             value={data.selfSummary}
           />

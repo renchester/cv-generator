@@ -110,22 +110,18 @@ function ExperienceInfo(props) {
       }}
     >
       <h1 className="form-title">Work Experience</h1>
-      {data.length ? submittedInfoMarkup : ''}
+
+      {data.length ? (
+        <div className="form-banner__container">{submittedInfoMarkup}</div>
+      ) : (
+        ''
+      )}
+
       <fieldset className="form-fieldset form__experience-info">
         <label className="form-label">
-          Title/Position:
-          <input
-            type="text"
-            name="jobTitle"
-            className="form-input form-input__job-title"
-            placeholder="Junior web developer"
-            value={expInfo.jobTitle}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label className="form-label">
-          Workplace/Company/Organization:
+          <span className="form-label__title">
+            Workplace/Company/Organization:
+          </span>
           <input
             type="text"
             name="company"
@@ -137,7 +133,19 @@ function ExperienceInfo(props) {
           />
         </label>
         <label className="form-label">
-          Starting Year:
+          <span className="form-label__title">Title/Position:</span>
+          <input
+            type="text"
+            name="jobTitle"
+            className="form-input form-input__job-title"
+            placeholder="Junior web developer"
+            value={expInfo.jobTitle}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label className="form-label">
+          <span className="form-label__title">Starting Year:</span>
           <input
             type="month"
             name="startingYear"
@@ -149,7 +157,7 @@ function ExperienceInfo(props) {
           />
         </label>
         <label className="form-label">
-          On-going:
+          <span className="form-label__title">On-going:</span>
           <input
             type="checkbox"
             name="onGoing"
@@ -160,7 +168,7 @@ function ExperienceInfo(props) {
         </label>
         {!expInfo.onGoing && (
           <label className="form-label">
-            End Year:
+            <span className="form-label__title">End Year:</span>
             <input
               type="month"
               name="endingYear"
@@ -173,24 +181,32 @@ function ExperienceInfo(props) {
         )}
 
         <label className="form-label">
-          List your job responsibilities
-          {expInfo.additionalInfo.length ? addlInfoMarkup : ''}
-          <input
-            type="text"
-            name="currentInfoItem"
-            placeholder="Did this one thing etc."
-            className="form-input form-input__job-specifics"
-            value={expInfo.currentInfoItem}
-            onChange={handleChange}
-            onKeyDown={submitAddlInfo}
-          />
-          <button
-            type="button"
-            className="btn btn__submit"
-            onClick={submitAddlInfo}
-          >
-            Submit additional info
-          </button>
+          <span className="form-label__title">
+            List your job responsibilities
+          </span>
+
+          <div className="submitted-item__container">
+            {expInfo.additionalInfo.length ? addlInfoMarkup : ''}
+          </div>
+
+          <div className="form-input__items-wrapper">
+            <input
+              type="text"
+              name="currentInfoItem"
+              placeholder="Did this one thing etc."
+              className="form-input form-input__job-specifics form-input__items"
+              value={expInfo.currentInfoItem}
+              onChange={handleChange}
+              onKeyDown={submitAddlInfo}
+            />
+            <button
+              type="button"
+              className="btn btn__submit-item material-symbols-outlined"
+              onClick={submitAddlInfo}
+            >
+              add
+            </button>
+          </div>
         </label>
       </fieldset>
       <button type="submit" className="btn btn__submit">

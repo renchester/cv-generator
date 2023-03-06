@@ -115,10 +115,16 @@ function EducationInfo(props) {
       }}
     >
       <h1 className="form-title">Education Background</h1>
-      {data.length ? submittedInfoMarkup : ''}
+      {data.length ? (
+        <div className="form-banner__container">{submittedInfoMarkup}</div>
+      ) : (
+        ''
+      )}
       <fieldset className="form-fieldset form__education-info">
         <label className="form-label">
-          University/Institution/Organization:
+          <span className="form-label__title">
+            University/Institution/Organization:
+          </span>
           <input
             type="text"
             name="institution"
@@ -130,7 +136,7 @@ function EducationInfo(props) {
           />
         </label>
         <label className="form-label">
-          Program/Degree/Course:
+          <span className="form-label__title">Program/Degree/Course:</span>
           <input
             type="text"
             name="degreeProgram"
@@ -142,7 +148,7 @@ function EducationInfo(props) {
           />
         </label>
         <label className="form-label">
-          Starting Year:
+          <span className="form-label__title">Starting Year:</span>
           <input
             type="month"
             name="startingYear"
@@ -154,7 +160,7 @@ function EducationInfo(props) {
           />
         </label>
         <label className="form-label">
-          On-going:
+          <span className="form-label__title">On-going:</span>
           <input
             type="checkbox"
             name="onGoing"
@@ -165,7 +171,7 @@ function EducationInfo(props) {
         </label>
         {!educInfo.onGoing && (
           <label className="form-label">
-            Graduating Year:
+            <span className="form-label__title">Graduating Year:</span>
             <input
               type="month"
               name="graduatingYear"
@@ -177,7 +183,7 @@ function EducationInfo(props) {
           </label>
         )}
         <label className="form-label">
-          GPA:
+          <span className="form-label__title">GPA:</span>
           <input
             type="text"
             name="gpa"
@@ -189,24 +195,32 @@ function EducationInfo(props) {
         </label>
 
         <label className="form-label">
-          Additional info (e.g. awards, courses, thesis project)
-          {educInfo.additionalInfo.length ? addlInfoMarkup : ''}
-          <textarea
-            type="text"
-            name="currentInfoItem"
-            className="form-input form-input__addl-info-item"
-            placeholder="Awards: 1st Place, Competition; 2nd Place, Competition"
-            value={educInfo.currentInfoItem}
-            onChange={handleChange}
-            onKeyDown={submitAddlInfo}
-          />
-          <button
-            type="button"
-            className="btn btn__submit"
-            onClick={submitAddlInfo}
-          >
-            +
-          </button>
+          <span className="form-label__title">
+            Additional info (e.g. awards, courses, thesis project)
+          </span>
+
+          <div className="submitted-item__container">
+            {educInfo.additionalInfo.length ? addlInfoMarkup : ''}
+          </div>
+
+          <div className="form-input__items-wrapper">
+            <input
+              type="text"
+              name="currentInfoItem"
+              className="form-input form-input__addl-info-item form-input__items"
+              placeholder="Awards: 1st Place, Competition; 2nd Place, Competition"
+              value={educInfo.currentInfoItem}
+              onChange={handleChange}
+              onKeyDown={submitAddlInfo}
+            />
+            <button
+              type="button"
+              className="btn btn__submit-item material-symbols-outlined"
+              onClick={submitAddlInfo}
+            >
+              add
+            </button>
+          </div>
         </label>
       </fieldset>
       <button type="submit" className="btn btn__submit">

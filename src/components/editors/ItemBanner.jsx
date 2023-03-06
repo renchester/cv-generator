@@ -7,11 +7,11 @@ function ItemBanner(props) {
         {name}
       </span>
       <button
-        className="submitted-item__delete"
+        className="submitted-item__delete btn-icon material-symbols-outlined"
         type="button"
         onMouseDown={() => deleteItem(id)}
       >
-        X
+        close
       </button>
     </div>
   );

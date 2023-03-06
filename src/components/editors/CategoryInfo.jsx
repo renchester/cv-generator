@@ -114,17 +114,23 @@ function CategoryInfo(props) {
       </h1>
       <span className="form-subtitle">
         {infoType === 'skillsInfo'
-          ? ''
-          : 'Only fill this out if you deem it important or if your CV preview still has space'}
+          ? "Showcase the most relevant skills applicable to the job you're applying for"
+          : "Only fill this out if it's important to the job you're applying for or if your CV still has space in the preview"}
       </span>
 
-      {data.length ? submittedCategoryMarkup : ''}
+      {data.length ? (
+        <div className="form-banner__container">{submittedCategoryMarkup}</div>
+      ) : (
+        ''
+      )}
 
       <fieldset className="form-fieldset form__other-info">
         <label className="form-label">
-          {infoType === 'skillsInfo'
-            ? ' Add a skill category'
-            : ' Add a category (ex. Languages/Interests/Awards)'}
+          <span className="form-label__title">
+            {infoType === 'skillsInfo'
+              ? ' Add a skill category'
+              : ' Add a category (ex. Languages/Interests/Awards)'}
+          </span>
           <input
             type="text"
             name="category"
@@ -138,28 +144,35 @@ function CategoryInfo(props) {
 
         {categoryInfo.category && (
           <label className="form-label">
-            Add {infoType === 'skillsInfo' ? 'a skill' : 'an item'} in{' '}
-            {categoryInfo.category}
+            <span className="form-label__title">
+              Add {infoType === 'skillsInfo' ? 'a skill' : 'an item'} in{' '}
+              {categoryInfo.category}
+            </span>
             <div className="form-input__submitted-items">
-              {categoryInfo.items.length ? itemBanners : ''}
-              <input
-                type="text"
-                name="currentItem"
-                className="form-input form-input__items form-input__cumulative"
-                placeholder={
-                  infoType === 'skillsInfo' ? 'Photoshop' : 'English(Fluent)'
-                }
-                onKeyDown={submitItem}
-                onChange={handleChange}
-                value={categoryInfo.currentItem}
-              />
-              <button
-                type="button"
-                className="btn btn__submit"
-                onClick={submitItem}
-              >
-                +
-              </button>
+              <div className="submitted-item__container">
+                {categoryInfo.items.length ? itemBanners : ''}
+              </div>
+
+              <div className="form-input__items-wrapper">
+                <input
+                  type="text"
+                  name="currentItem"
+                  className="form-input form-input__items form-input__cumulative"
+                  placeholder={
+                    infoType === 'skillsInfo' ? 'Photoshop' : 'English(Fluent)'
+                  }
+                  onKeyDown={submitItem}
+                  onChange={handleChange}
+                  value={categoryInfo.currentItem}
+                />
+                <button
+                  type="button"
+                  className="btn btn__submit-item material-symbols-outlined"
+                  onClick={submitItem}
+                >
+                  add
+                </button>
+              </div>
             </div>
           </label>
         )}

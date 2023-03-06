@@ -7,7 +7,7 @@ function ContactInfo(props) {
 
       <fieldset className="form-fieldset form__contact-info">
         <label className="form-label">
-          Email:
+          <span className="form-label__title">Email:</span>
           <input
             type="email"
             name="email"
@@ -18,9 +18,9 @@ function ContactInfo(props) {
           />
         </label>
         <label className="form-label">
-          Phone Number:
+          <span className="form-label__title">Phone Number:</span>
           <input
-            type="number"
+            type="text"
             name="phoneNumber"
             className="form-input form-input__phone-number"
             onChange={handleChange}
@@ -28,7 +28,7 @@ function ContactInfo(props) {
           />
         </label>
         <label className="form-label">
-          Location:
+          <span className="form-label__title">Location:</span>
           <input
             type="text"
             name="location"
@@ -39,7 +39,7 @@ function ContactInfo(props) {
           />
         </label>
         <label className="form-label">
-          Linkedin:
+          <span className="form-label__title">Linkedin:</span>
           <input
             type="text"
             name="linkedin"
