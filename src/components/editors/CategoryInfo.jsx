@@ -31,12 +31,28 @@ function OtherInfo(props) {
   };
 
   const submitCategoryInfo = (e) => {
+    e.preventDefault();
+
+    if (!categoryInfo.category || !categoryInfo.items.length) return;
+
     handleSubmit(e, infoType);
     setCategoryInfo(emptyState);
   };
 
-  const submitItemKey = (e) => {
-    if (e.key !== 'Enter') return;
+  const submitItem = (e) => {
+    let targetElement;
+
+    if (e.type === 'keydown' && e.key !== 'Enter') return;
+
+    e.preventDefault();
+
+    if (e.type === 'click') {
+      targetElement = e.target.previousElementSibling;
+    } else if (e.key === 'Enter') {
+      targetElement = e.target;
+    }
+
+    if (!targetElement.value) return;
 
     setCategoryInfo((prevInfo) => ({
       ...prevInfo,
@@ -44,23 +60,7 @@ function OtherInfo(props) {
         ...prevInfo.items,
         {
           id: nanoid(),
-          content: e.target.value,
-        },
-      ],
-      currentItem: '',
-    }));
-  };
-
-  const submitItemClick = (e) => {
-    const itemContent = e.target.previousElementSibling.value;
-
-    setCategoryInfo((prevInfo) => ({
-      ...prevInfo,
-      items: [
-        ...prevInfo.items,
-        {
-          id: nanoid(),
-          content: itemContent,
+          content: targetElement.value,
         },
       ],
       currentItem: '',
@@ -96,7 +96,13 @@ function OtherInfo(props) {
   ));
 
   return (
-    <section className="form form__container form__other-info">
+    <form
+      className="form form__container form__other-info"
+      onSubmit={submitCategoryInfo}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      }}
+    >
       <h1 className="form-title">
         {infoType === 'skillsInfo' ? 'Technical Skills' : 'Other Info'}
       </h1>
@@ -107,6 +113,7 @@ function OtherInfo(props) {
       </span>
 
       {data.length ? submittedCategoryMarkup : ''}
+
       <fieldset className="form-fieldset form__other-info">
         <label className="form-label">
           {infoType === 'skillsInfo'
@@ -119,6 +126,7 @@ function OtherInfo(props) {
             placeholder={infoType === 'skillsInfo' ? 'Design' : 'Languages'}
             value={categoryInfo.category}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -135,14 +143,14 @@ function OtherInfo(props) {
                 placeholder={
                   infoType === 'skillsInfo' ? 'Photoshop' : 'English(Fluent)'
                 }
-                onKeyDown={submitItemKey}
+                onKeyDown={submitItem}
                 onChange={handleChange}
                 value={categoryInfo.currentItem}
               />
               <button
                 type="button"
                 className="btn btn__submit"
-                onClick={submitItemClick}
+                onClick={submitItem}
               >
                 +
               </button>
@@ -151,14 +159,10 @@ function OtherInfo(props) {
         )}
       </fieldset>
 
-      <button
-        type="submit"
-        className="btn btn__submit"
-        onClick={submitCategoryInfo}
-      >
+      <button type="submit" className="btn btn__submit">
         Submit {infoType === 'skillsInfo' ? 'skill info' : 'info'}
       </button>
-    </section>
+    </form>
   );
 }
 

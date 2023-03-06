@@ -40,6 +40,8 @@ function EducationInfo(props) {
   };
 
   const submitEducInfo = (e) => {
+    e.preventDefault();
+
     // Submit local state to app state
     handleSubmit(e, infoType);
 
@@ -48,7 +50,14 @@ function EducationInfo(props) {
   };
 
   const submitAddlInfo = (e) => {
-    const infoContent = e.target.previousElementSibling.value;
+    let infoContent;
+
+    if (e.type === 'keydown' && e.key !== 'Enter') return;
+    if (e.type === 'click') {
+      infoContent = e.target.previousElementSibling.value;
+    } else if (e.key === 'Enter') infoContent = e.target.value;
+
+    if (!infoContent) return;
 
     setEducInfo((prevInfo) => ({
       ...prevInfo,
@@ -92,7 +101,13 @@ function EducationInfo(props) {
   ));
 
   return (
-    <section className="form form__container form__education-info">
+    <form
+      className="form form__container form__education-info"
+      onSubmit={submitEducInfo}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      }}
+    >
       <h1 className="form-title">Education Background</h1>
       {data.length ? submittedInfoMarkup : ''}
       <fieldset className="form-fieldset form__education-info">
@@ -105,6 +120,7 @@ function EducationInfo(props) {
             placeholder="University of London"
             value={educInfo.institution}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -116,6 +132,7 @@ function EducationInfo(props) {
             placeholder="B.A. in Psychology/Doctorate in Philosophy"
             value={educInfo.degreeProgram}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -127,6 +144,7 @@ function EducationInfo(props) {
             min="1900-01"
             value={educInfo.startingYear || '2010-10'}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -174,24 +192,21 @@ function EducationInfo(props) {
             placeholder="Awards: 1st Place, Competition; 2nd Place, Competition"
             value={educInfo.currentInfoItem}
             onChange={handleChange}
+            onKeyDown={submitAddlInfo}
           />
           <button
             type="button"
             className="btn btn__submit"
             onClick={submitAddlInfo}
           >
-            Submit additional info
+            +
           </button>
         </label>
       </fieldset>
-      <button
-        type="submit"
-        className="btn btn__submit"
-        onClick={submitEducInfo}
-      >
+      <button type="submit" className="btn btn__submit">
         Submit education background
       </button>
-    </section>
+    </form>
   );
 }
 

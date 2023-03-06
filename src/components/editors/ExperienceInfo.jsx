@@ -38,12 +38,21 @@ function ExperienceInfo(props) {
   };
 
   const submitExpInfo = (e) => {
+    e.preventDefault();
+
     handleSubmit(e, infoType);
     setExpInfo(emptyState);
   };
 
   const submitAddlInfo = (e) => {
-    const infoContent = e.target.previousElementSibling.value;
+    let infoContent;
+
+    if (e.type === 'keydown' && e.key !== 'Enter') return;
+    if (e.type === 'click') {
+      infoContent = e.target.previousElementSibling.value;
+    } else if (e.key === 'Enter') infoContent = e.target.value;
+
+    if (!infoContent) return;
 
     setExpInfo((prevInfo) => ({
       ...prevInfo,
@@ -87,7 +96,13 @@ function ExperienceInfo(props) {
   ));
 
   return (
-    <section className="form form__container form__experience-info">
+    <form
+      className="form form__container form__experience-info"
+      onSubmit={submitExpInfo}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      }}
+    >
       <h1 className="form-title">Work Experience</h1>
       {data.length ? submittedInfoMarkup : ''}
       <fieldset className="form-fieldset form__experience-info">
@@ -100,6 +115,7 @@ function ExperienceInfo(props) {
             placeholder="Junior web developer"
             value={expInfo.jobTitle}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -111,6 +127,7 @@ function ExperienceInfo(props) {
             placeholder="Mozilla Inc."
             value={expInfo.company}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -122,6 +139,7 @@ function ExperienceInfo(props) {
             min="1900-01"
             value={expInfo.startingYear || '2010-10'}
             onChange={handleChange}
+            required
           />
         </label>
         <label className="form-label">
@@ -158,6 +176,7 @@ function ExperienceInfo(props) {
             className="form-input form-input__job-specifics"
             value={expInfo.currentInfoItem}
             onChange={handleChange}
+            onKeyDown={submitAddlInfo}
           />
           <button
             type="button"
@@ -168,10 +187,10 @@ function ExperienceInfo(props) {
           </button>
         </label>
       </fieldset>
-      <button type="submit" className="btn btn__submit" onClick={submitExpInfo}>
+      <button type="submit" className="btn btn__submit">
         Submit work experience
       </button>
-    </section>
+    </form>
   );
 }
 

@@ -51,7 +51,9 @@ function App() {
   };
 
   const submitBackgroundInfo = (e, type) => {
-    const parentEl = e.target.closest('section');
+    e.preventDefault();
+
+    const parentEl = e.target.closest('form');
 
     const newInfo = [...parentEl.querySelectorAll('input')]
       .map((field) => ({
@@ -85,7 +87,9 @@ function App() {
   };
 
   const submitCategoryInfo = (e, type) => {
-    const parentEl = e.target.closest('section');
+    e.preventDefault();
+
+    const parentEl = e.target.closest('form');
 
     const category = parentEl.querySelector('.form-input__item-category').value;
     const submittedItems = [
