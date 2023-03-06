@@ -8,10 +8,6 @@ import OtherInfoView from './OtherInfoView';
 function Preview(props) {
   const { formData } = props;
 
-  const educationInfoMarkup = formData.educationInfo.map((infoData) => (
-    <EducationInfoView key={infoData.id} data={infoData} />
-  ));
-
   return (
     <div className="preview__container">
       <BasicInfoView data={formData.basicInfo} />

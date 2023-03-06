@@ -22,6 +22,7 @@
 }
 
 .header {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -117,6 +118,10 @@
     &:focus {
       outline: none;
     }
+
+    &::placeholder {
+      color: var(--color-text-opacity50);
+    }
   }
 
   &-input__items-wrapper {
@@ -131,47 +136,5 @@
     margin-top: 10px;
     margin-left: var(--text-margin-left);
     border: 2px solid var(--color-input-outline);
-  }
-}
-
-.btn {
-  &__submit-item {
-    position: absolute;
-    top: 28%;
-    left: calc(100% + 10px);
-    width: 25px;
-    height: 25px;
-    padding-top: 1px;
-    padding-left: 1px;
-    border-radius: 50px;
-    background-color: var(--color-button-item);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
-    color: var(--color-text-light);
-    font-size: 22px;
-
-    &:focus,
-    &:hover {
-      outline: none;
-      transform: scale(1.2);
-      background-color: var(--color-button-item-hover);
-    }
-  }
-
-  &__submit {
-    padding: 10px 20px;
-    border: 2.5px solid var(--color-button);
-    border-radius: 7px;
-    transition: transform 100ms ease-in-out;
-    color: var(--color-button);
-
-    &:focus,
-    &:hover {
-      outline: none;
-      background-color: var(--color-button);
-      color: var(--color-text-light);
-      transform: scale(1.01);
-      transform-origin: left;
-    }
   }
 }

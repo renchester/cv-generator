@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import BasicInfo from './BasicInfo';
 import ContactInfo from './ContactInfo';
 import EducationInfo from './EducationInfo';
@@ -15,6 +17,24 @@ function Editor(props) {
     deleteCategoryInfo,
   } = props;
 
+  const [isDarkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem('isDarkMode')) || false,
+  );
+
+  useEffect(() => {
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
+
+  const handleTheme = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   return (
     <div className="editor">
       <header className="header">
@@ -30,6 +50,24 @@ function Editor(props) {
         >
           Check out the Github repo for this project here
         </a>
+
+        <div className="switch">
+          <input
+            className="switch__input"
+            type="checkbox"
+            id="themeSwitch"
+            onChange={handleTheme}
+            checked={isDarkMode}
+          />
+          <label
+            aria-hidden="true"
+            className="switch__label"
+            htmlFor="themeSwitch"
+          >
+            On
+          </label>
+          <div aria-hidden="true" className="switch__marker" />
+        </div>
       </header>
 
       <BasicInfo

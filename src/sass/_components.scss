@@ -1,0 +1,130 @@
+.btn {
+  &__submit-item {
+    position: absolute;
+    top: 28%;
+    left: calc(100% + 10px);
+    width: 25px;
+    height: 25px;
+    padding-top: 1px;
+    padding-left: 1px;
+    border-radius: 50px;
+    background-color: var(--color-button-item);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+    color: var(--color-text-light);
+    font-size: 22px;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      transform: scale(1.2);
+      background-color: var(--color-button-item-hover);
+    }
+  }
+
+  &__submit {
+    padding: 10px 20px;
+    border: 2.5px solid var(--color-button);
+    border-radius: 7px;
+    background-color: transparent;
+    color: var(--color-button);
+    transition: transform 100ms ease-in-out;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      background-color: var(--color-button);
+      color: var(--color-text-opposite);
+      transform: scale(1.01);
+      transform-origin: left;
+    }
+  }
+}
+
+.switch {
+  --switch-width: 64px;
+  --switch-height: calc(var(--switch-width) / 2);
+  --switch-padding: 3px;
+
+  --switch-animation-duration: 0.2s;
+
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  width: var(--switch-width, 64px);
+  height: var(--switch-height, 32px);
+  border-radius: 50em;
+  padding: var(--switch-padding, 0);
+
+  transform: scale(0.8);
+
+  &__input,
+  &__Label {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__input {
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  &__input:checked + &__label {
+    background-color: hsl(228, 74%, 61%);
+    background-color: var(--color-primary);
+  }
+
+  &__input:checked + &__label + &__marker {
+    left: calc(100% - 23px);
+  }
+
+  &__input:focus + &__label,
+  &__input:active + &__label {
+    --color-shadow: hsla(228, 74%, 61%, 0.2);
+    box-shadow: 0 0 0 3px var(--color-shadow, hsla(228, 74%, 61%, 0.2));
+  }
+
+  &__input:focus + &__label,
+  &__input:active + &__label {
+    box-shadow: 0 0 0 3px var(--color-shadow, hsla(228, 74%, 61%, 0.2));
+  }
+
+  &__label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: hsl(240, 1%, 83%);
+    background-color: var(--color-grey-light-3);
+    border-radius: inherit;
+    z-index: 1;
+    transition: background 0.2s;
+    transition: background var(--switch-animation-duration);
+  }
+
+  &__marker {
+    position: relative;
+    background-color: white;
+    width: calc(var(--switch-height) - var(--switch-padding) * 2.5);
+    height: calc(var(--switch-height) - var(--switch-padding) * 2.5);
+    border-radius: 50%;
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    left: var(--switch-padding);
+    transition: left 0.2s;
+    transition: left var(--switch-animation-duration);
+    will-change: left;
+  }
+}
