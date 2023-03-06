@@ -1,0 +1,106 @@
+@use 'base';
+
+.form-banner {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 30px;
+    margin-block: 20px;
+  }
+
+  &__completed {
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+      rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    border: 2px solid var(--color-form-banner);
+    border-radius: 9px;
+    padding-block: 10px;
+    padding-left: var(--text-margin-left);
+    color: var(--color-form-banner);
+
+    &:focus,
+    &:focus-within,
+    &:hover {
+      background-color: var(--color-form-banner);
+      color: var(--color-text-light);
+    }
+  }
+
+  &__list-item-text {
+    margin-left: var(--text-margin-left);
+    margin-right: auto;
+    vertical-align: center;
+
+    .list-item__main-text {
+      font-weight: 800;
+    }
+  }
+
+  &__btn-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: var(--text-margin-left);
+
+    & .btn {
+      cursor: pointer;
+      padding: 2px;
+      width: 28px;
+      height: 28px;
+      background-color: transparent;
+      color: currentColor;
+      border-radius: 5px;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+        border: 1px solid white;
+        outline: none;
+      }
+    }
+
+    & .btn-icon {
+      font-size: 22px;
+    }
+  }
+}
+
+.submitted-item {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding-inline: var(--text-margin-left);
+    color: var(--color-text-light);
+  }
+
+  &__wrapper {
+    position: relative;
+    background-color: var(--color-item-banner);
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 40px;
+  }
+
+  &__name {
+    padding-left: 8px;
+    margin-right: 8px;
+  }
+
+  &__delete {
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--color-text-light);
+
+    &:focus,
+    &:hover {
+      transform: scale(1.1);
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+}
