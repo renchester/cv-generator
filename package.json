@@ -1,12 +1,15 @@
 {
-  "name": "cv-appplication",
+  "name": "cv-generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://renchester.github.io/cv-generator/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
@@ -26,6 +29,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^5.0.0",
     "sass": "^1.58.3",
     "vite": "^4.1.0",
     "vite-plugin-eslint": "^1.8.1"
