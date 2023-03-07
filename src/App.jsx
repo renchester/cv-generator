@@ -28,9 +28,15 @@ function App() {
     },
   );
 
+  const [previewVisible, setPreviewVisibility] = useState(true);
+
   useEffect(() => {
     localStorage.setItem('cvFormData', JSON.stringify(formData));
   }, [formData]);
+
+  const togglePreview = () => {
+    setPreviewVisibility((prevState) => !prevState);
+  };
 
   const handleBasicInfoChanges = (e) => {
     const { name, value } = e.target;
@@ -135,7 +141,14 @@ function App() {
         submitCategoryInfo={submitCategoryInfo}
         deleteCategoryInfo={deleteCategoryInfo}
       />
-      <Preview formData={formData} />
+      {previewVisible && <Preview formData={formData} />}
+      <button
+        className="btn__toggle-preview material-symbols-outlined"
+        type="button"
+        onClick={togglePreview}
+      >
+        visibility
+      </button>
     </div>
   );
 }

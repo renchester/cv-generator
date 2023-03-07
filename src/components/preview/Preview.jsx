@@ -10,12 +10,19 @@ function Preview(props) {
 
   return (
     <div className="preview__container">
-      <BasicInfoView data={formData.basicInfo} />
-      <ContactInfoView data={formData.contactInfo} />
-      <EducationInfoView data={formData.educationInfo} />
-      <ExperienceInfoView data={formData.experienceInfo} />
-      <SkillsInfoView data={formData.skillsInfo} />
-      <OtherInfoView data={formData.otherInfo} />
+      <main className="preview__printable">
+        <section className="preview__main-col">
+          <BasicInfoView data={formData.basicInfo} />
+          <EducationInfoView data={formData.educationInfo} />
+          <ExperienceInfoView data={formData.experienceInfo} />
+        </section>
+
+        <section className="preview__sidebar">
+          <ContactInfoView data={formData.contactInfo} />
+          <SkillsInfoView data={formData.skillsInfo} />
+          <OtherInfoView data={formData.otherInfo} />
+        </section>
+      </main>
     </div>
   );
 }

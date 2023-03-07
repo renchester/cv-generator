@@ -5,7 +5,7 @@ function FormBanner(props) {
     <div className="form-banner__completed form-banner__editable">
       <p className="form-banner__list-item-text">
         <span className="list-item__main-text">{mainText} </span>
-        <span className="list-item-sub-text">/ {subText} . . . </span>
+        <span className="list-item-sub-text">/ {subText} </span>
       </p>
 
       <div className="form-banner__btn-container">
