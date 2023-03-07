@@ -3,11 +3,15 @@ function ExperienceInfoView(props) {
 
   const expInfoPreviewMarkup = data.map((item) => (
     <div className="preview-unit__exp-info" key={item.id}>
-      <h2 className="preview__job-title">{item.jobTitle}</h2>
-      <h2 className="preview__company">{item.company}</h2>
-      <span className="preview__active-years">
-        {item.startingYear}-{item.onGoing ? 'present' : item.endingYear}
-      </span>
+      <div className="preview__info-main-header">
+        <div className="preview__info-main-wrapper">
+          <h2 className="preview__job-title">{item.jobTitle}</h2>
+          <h2 className="preview__company">{item.company}</h2>
+        </div>
+        <span className="preview__active-years">
+          {item.startingYear}-{item.onGoing ? 'present' : item.endingYear}
+        </span>
+      </div>
       {item.additionalInfo.length ? (
         <ul>
           {item.additionalInfo.map((info) => (

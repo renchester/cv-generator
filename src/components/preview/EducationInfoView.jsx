@@ -3,11 +3,15 @@ function EducationInfoView(props) {
 
   const educInfoPreviewMarkup = data.map((item) => (
     <div className="preview-unit__educ-info" key={item.id}>
-      <h2 className="preview__institution">{item.institution}</h2>
-      <h2 className="preview__degree-program">{item.degreeProgram}</h2>
-      <span className="preview__active-years">
-        {item.startingYear}-{item.onGoing ? 'present' : item.graduatingYear}
-      </span>
+      <div className="preview__info-main-header">
+        <div className="preview__info-main-wrapper">
+          <h2 className="preview__institution">{item.institution}</h2>
+          <h2 className="preview__degree-program">{item.degreeProgram}</h2>
+        </div>
+        <span className="preview__active-years">
+          {item.startingYear}-{item.onGoing ? 'present' : item.graduatingYear}
+        </span>
+      </div>
       {item.gpa && <p className="preview__gpa">GPA: {item.gpa}</p>}
       {item.additionalInfo.length ? (
         <ul>
