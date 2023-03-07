@@ -38,6 +38,10 @@ function App() {
     setPreviewVisibility((prevState) => !prevState);
   };
 
+  const printPreview = () => {
+    window.print();
+  };
+
   const handleBasicInfoChanges = (e) => {
     const { name, value } = e.target;
 
@@ -142,13 +146,22 @@ function App() {
         deleteCategoryInfo={deleteCategoryInfo}
       />
       {previewVisible && <Preview formData={formData} />}
-      <button
-        className="btn__toggle-preview material-symbols-outlined"
-        type="button"
-        onClick={togglePreview}
-      >
-        visibility
-      </button>
+      <div className="btn-container__preview">
+        <button
+          className="btn__toggle-preview material-symbols-outlined"
+          type="button"
+          onClick={togglePreview}
+        >
+          visibility
+        </button>
+        <button
+          type="button"
+          className="btn__print-preview material-symbols-outlined"
+          onClick={printPreview}
+        >
+          print
+        </button>
+      </div>
     </div>
   );
 }
