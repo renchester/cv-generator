@@ -119,6 +119,18 @@ function ExperienceInfo(props) {
 
       <fieldset className="form-fieldset form__experience-info">
         <label className="form-label">
+          <span className="form-label__title">Title/Position:</span>
+          <input
+            type="text"
+            name="jobTitle"
+            className="form-input form-input__job-title"
+            placeholder="Junior web developer"
+            value={expInfo.jobTitle}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label className="form-label">
           <span className="form-label__title">
             Workplace/Company/Organization:
           </span>
@@ -128,18 +140,6 @@ function ExperienceInfo(props) {
             className="form-input form-input__company"
             placeholder="Mozilla Inc."
             value={expInfo.company}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label className="form-label">
-          <span className="form-label__title">Title/Position:</span>
-          <input
-            type="text"
-            name="jobTitle"
-            className="form-input form-input__job-title"
-            placeholder="Junior web developer"
-            value={expInfo.jobTitle}
             onChange={handleChange}
             required
           />
@@ -156,16 +156,28 @@ function ExperienceInfo(props) {
             required
           />
         </label>
-        <label className="form-label">
+        <div className="form-label">
           <span className="form-label__title">On-going:</span>
-          <input
-            type="checkbox"
-            name="onGoing"
-            className="form-input form-input__ongoing"
-            onChange={handleChange}
-            checked={expInfo.onGoing}
-          />
-        </label>
+          <div className="switch-ongoing">
+            <input
+              className="form-input switch-ongoing__input"
+              type="checkbox"
+              name="onGoing"
+              id="ongoingSwitchExp"
+              onChange={handleChange}
+              checked={expInfo.onGoing}
+            />
+            <label
+              aria-hidden="true"
+              className="switch-ongoing__label"
+              htmlFor="ongoingSwitchExp"
+            >
+              On
+            </label>
+            <div aria-hidden="true" className="switch-ongoing__marker" />
+          </div>
+        </div>
+
         {!expInfo.onGoing && (
           <label className="form-label">
             <span className="form-label__title">End Year:</span>

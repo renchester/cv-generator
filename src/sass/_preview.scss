@@ -228,22 +228,3 @@
     }
   }
 }
-
-@media print {
-  .editor {
-    display: none;
-  }
-
-  .preview__container {
-    background-color: white;
-  }
-
-  .preview__printable {
-    display: grid;
-    box-shadow: none;
-  }
-
-  .btn__toggle-preview {
-    display: none;
-  }
-}

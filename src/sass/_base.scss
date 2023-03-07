@@ -101,6 +101,7 @@ body {
   --color-button-item-hover: #13a706;
 
   --color-button: #006bb3;
+  --color-button-hover: #0068ad;
 
   /* FONT FAMILY VARIABLES */
 
@@ -175,5 +176,24 @@ body.dark-mode {
   .preview__container {
     background-color: var(--color-background) !important;
     margin-bottom: 40px;
+  }
+}
+
+@media print {
+  .editor {
+    display: none;
+  }
+
+  .preview__container {
+    background-color: white;
+  }
+
+  .preview__printable.preview__printable {
+    display: grid;
+    box-shadow: none;
+  }
+
+  .btn-container__preview.btn-container__preview {
+    display: none;
   }
 }

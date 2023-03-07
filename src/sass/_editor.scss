@@ -95,6 +95,7 @@
   }
 
   &-label {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -114,6 +115,17 @@
 
     &:focus-within {
       border: 2px solid var(--color-input-outline);
+    }
+  }
+
+  div.form-label {
+    // For ongoing checkbox input
+    flex-direction: row;
+    align-items: center;
+
+    & .form-label__title {
+      transform: none;
+      padding-bottom: 0;
     }
   }
 

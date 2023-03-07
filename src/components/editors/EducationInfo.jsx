@@ -159,16 +159,27 @@ function EducationInfo(props) {
             required
           />
         </label>
-        <label className="form-label">
+        <div className="form-label">
           <span className="form-label__title">On-going:</span>
-          <input
-            type="checkbox"
-            name="onGoing"
-            className="form-input form-input__ongoing"
-            onChange={handleChange}
-            checked={educInfo.onGoing}
-          />
-        </label>
+          <div className="switch-ongoing">
+            <input
+              className="form-input switch-ongoing__input"
+              type="checkbox"
+              name="onGoing"
+              id="ongoingSwitchEduc"
+              onChange={handleChange}
+              checked={educInfo.onGoing}
+            />
+            <label
+              aria-hidden="true"
+              className="switch-ongoing__label"
+              htmlFor="ongoingSwitchEduc"
+            >
+              On
+            </label>
+            <div aria-hidden="true" className="switch-ongoing__marker" />
+          </div>
+        </div>
         {!educInfo.onGoing && (
           <label className="form-label">
             <span className="form-label__title">Graduating Year:</span>
