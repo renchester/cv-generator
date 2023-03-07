@@ -16,7 +16,26 @@ function SkillsInfoView(props) {
   return (
     <section className="preview-area preview-area__skills-info">
       <h1 className="preview-title">Technical Skills</h1>
-      {skillsInfoMarkup}
+      {data.length ? (
+        skillsInfoMarkup
+      ) : (
+        <>
+          <div className="preview__skill-container">
+            <h2 className="preview__skill-category">Design</h2>
+
+            <div className="preview__skill-item">Photoshop</div>
+            <div className="preview__skill-item">Illustrator</div>
+            <div className="preview__skill-item">Figma</div>
+          </div>
+          <div className="preview__skill-container">
+            <h2 className="preview__skill-category">Management</h2>
+
+            <div className="preview__skill-item">Time-management</div>
+            <div className="preview__skill-item">Communication</div>
+            <div className="preview__skill-item">Pressure</div>
+          </div>
+        </>
+      )}
     </section>
   );
 }

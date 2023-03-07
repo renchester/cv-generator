@@ -9,7 +9,10 @@ function BasicInfoView(props) {
       <h2 className="preview__job-title">
         {data.occupation || 'Business Manager'}
       </h2>
-      <p className="preview__self-summary">{data.selfSummary}</p>
+      <p className="preview__self-summary">
+        {data.selfSummary ||
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium corporis eligendi quos natus consectetur sint eum nobis dolore neque error reiciendis explicabo ex minima quae fugit, corrupti, temporibus soluta blanditiis.'}
+      </p>
     </section>
   );
 }

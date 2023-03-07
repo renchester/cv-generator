@@ -7,25 +7,33 @@ function ContactInfoView(props) {
         <span className="material-symbols-outlined preview__contact-icon icon-mail">
           mail
         </span>
-        <span className="preview__email">{data.email}</span>
+        <span className="preview__email">
+          {data.email || 'johndoe@site.com'}
+        </span>
       </div>
       <div className="preview__contact-wrapper">
         <span className="material-symbols-outlined preview__contact-icon icon-phone">
           smartphone
         </span>
-        <span className="preview__phone-number">{data.phoneNumber}</span>
+        <span className="preview__phone-number">
+          {data.phoneNumber || '+111 222 3333'}
+        </span>
       </div>
       <div className="preview__contact-wrapper">
         <span className="material-symbols-outlined preview__contact-icon icon-location">
           location_on
         </span>
-        <span className="preview__location">{data.location}</span>
+        <span className="preview__location">
+          {data.location || 'London, UK'}
+        </span>
       </div>
       <div className="preview__contact-wrapper">
         <span className="material-symbols-outlined preview__contact-icon icon-link">
           link
         </span>
-        <span className="preview__website">{data.website}</span>
+        <span className="preview__website">
+          {data.website || 'linkedin.sample.com/johndoe'}
+        </span>
       </div>
     </section>
   );

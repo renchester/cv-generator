@@ -129,7 +129,7 @@ function CategoryInfo(props) {
           <span className="form-label__title">
             {infoType === 'skillsInfo'
               ? ' Add a skill category'
-              : ' Add a category (ex. Languages/Interests/Awards)'}
+              : ' Add a category (ex. Languages/Awards)'}
           </span>
           <input
             type="text"

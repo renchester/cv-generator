@@ -12,7 +12,7 @@ function ContactInfo(props) {
             type="email"
             name="email"
             className="form-input form-input__email"
-            placeholder="johnappleseed@site.com"
+            placeholder="johndoe@site.com"
             onChange={handleChange}
             value={data.email}
           />
@@ -44,7 +44,7 @@ function ContactInfo(props) {
             type="text"
             name="website"
             className="form-input form-input__website"
-            placeholder="linkedin.com/johnappleseed"
+            placeholder="linkedin.sample.com/johndoe"
             onChange={handleChange}
             value={data.website}
           />

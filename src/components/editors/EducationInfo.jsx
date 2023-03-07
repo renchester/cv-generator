@@ -141,7 +141,7 @@ function EducationInfo(props) {
             type="text"
             name="degreeProgram"
             className="form-input form-input__degree-program"
-            placeholder="B.A. in Psychology/Doctorate in Philosophy"
+            placeholder="Ph.D in Philosophy"
             value={educInfo.degreeProgram}
             onChange={handleChange}
             required
@@ -194,7 +194,7 @@ function EducationInfo(props) {
           </label>
         )}
         <label className="form-label">
-          <span className="form-label__title">GPA:</span>
+          <span className="form-label__title">GPA (optional):</span>
           <input
             type="text"
             name="gpa"
@@ -207,7 +207,7 @@ function EducationInfo(props) {
 
         <label className="form-label">
           <span className="form-label__title">
-            Additional info (e.g. awards, courses, thesis project)
+            Additional info (ex. awards, courses, thesis project)
           </span>
 
           <div className="submitted-item__container">
@@ -219,7 +219,7 @@ function EducationInfo(props) {
               type="text"
               name="currentInfoItem"
               className="form-input form-input__addl-info-item form-input__items"
-              placeholder="Awards: 1st Place, Competition; 2nd Place, Competition"
+              placeholder="Press enter to submit an item..."
               value={educInfo.currentInfoItem}
               onChange={handleChange}
               onKeyDown={submitAddlInfo}

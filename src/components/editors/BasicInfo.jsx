@@ -22,7 +22,7 @@ function BasicInfo(props) {
             type="text"
             name="lastName"
             className="form-input form-input__last-name"
-            placeholder="Appleseed"
+            placeholder="Doe"
             onChange={handleChange}
             value={data.lastName}
           />
@@ -33,7 +33,7 @@ function BasicInfo(props) {
             type="text"
             name="occupation"
             className="form-input form-input__occupation"
-            placeholder="Web developer"
+            placeholder="Business Manager"
             onChange={handleChange}
             value={data.occupation}
           />

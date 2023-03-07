@@ -124,7 +124,7 @@ function ExperienceInfo(props) {
             type="text"
             name="jobTitle"
             className="form-input form-input__job-title"
-            placeholder="Junior web developer"
+            placeholder="Business Analyst"
             value={expInfo.jobTitle}
             onChange={handleChange}
             required
@@ -138,7 +138,7 @@ function ExperienceInfo(props) {
             type="text"
             name="company"
             className="form-input form-input__company"
-            placeholder="Mozilla Inc."
+            placeholder="Company Inc."
             value={expInfo.company}
             onChange={handleChange}
             required
@@ -205,7 +205,7 @@ function ExperienceInfo(props) {
             <input
               type="text"
               name="currentInfoItem"
-              placeholder="Did this one thing etc."
+              placeholder="Press enter to submit an item..."
               className="form-input form-input__job-specifics form-input__items"
               value={expInfo.currentInfoItem}
               onChange={handleChange}
