@@ -99,7 +99,18 @@
     justify-content: space-evenly;
     gap: 13px;
 
-    font-size: 13px;
+    font-size: 12px;
+
+    & .preview__contact-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    & .preview__contact-icon {
+      font-variation-settings: 'FILL' 01, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+      font-size: 20px;
+    }
   }
 
   &__educ-info,
@@ -136,15 +147,15 @@
       font-style: italic;
     }
 
-    .preview__gpa,
-    .preview__educ-additional-info,
-    .preview__job-responsibility {
-      font-size: 13px;
-      margin-bottom: 5px;
+    .preview__gpa {
+      font-size: 12px;
+      margin-bottom: 10px;
     }
 
     .preview__educ-additional-info,
     .preview__job-responsibility {
+      font-size: 13px;
+      margin-bottom: 5px;
       padding-left: 5px;
       position: relative;
 

@@ -19,7 +19,7 @@ function App() {
         email: '',
         phoneNumber: '',
         location: '',
-        linkedin: '',
+        website: '',
       },
       educationInfo: [],
       experienceInfo: [],

@@ -39,14 +39,14 @@ function ContactInfo(props) {
           />
         </label>
         <label className="form-label">
-          <span className="form-label__title">Linkedin:</span>
+          <span className="form-label__title">Website:</span>
           <input
             type="text"
-            name="linkedin"
-            className="form-input form-input__linkedin"
+            name="website"
+            className="form-input form-input__website"
             placeholder="linkedin.com/johnappleseed"
             onChange={handleChange}
-            value={data.linkedin}
+            value={data.website}
           />
         </label>
       </fieldset>
