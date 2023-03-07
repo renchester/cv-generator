@@ -26,6 +26,9 @@
         "optionalDependencies": false,
         "peerDependencies": false
       }
-    ]
+    ],
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/prop-types": "off"
   }
 }
