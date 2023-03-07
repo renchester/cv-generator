@@ -13,8 +13,9 @@
 
   &__printable {
     display: grid;
-    grid-template-columns: 385px 0px;
-    grid-template-rows: 1fr;
+    grid-template-columns: 345px auto;
+    grid-template-rows: auto 1fr;
+    gap: 30px;
     padding: 15px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -27,34 +28,55 @@
 
   &__main-col {
     grid-column: 1 / 2;
+    grid-row: 2 / 3;
 
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 5px;
     word-wrap: break-word;
   }
 
   &__sidebar {
     grid-column: 2 / 3;
+    grid-row: 2 / 3;
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: fit-content;
+    gap: 20px;
+    width: 100%;
   }
 
   &-title {
     padding-bottom: 5px;
+    margin-bottom: 12px;
     border-bottom: 1px solid black;
 
     font-size: 16px;
+    font-weight: bold;
     text-transform: uppercase;
+  }
+
+  &-unit__educ-info,
+  &-unit__exp-info {
+    position: relative;
+    padding-left: 18px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 6.5px;
+      height: 6.5px;
+      border: 3px solid rgba(128, 128, 128, 0.5);
+      border-radius: 50%;
+      background-color: white;
+      left: 0;
+      top: 2%;
+    }
   }
 }
 
 .preview-area {
   height: fit-content;
-  margin-right: 25px;
 
   &__basic-info {
     .preview__name {
@@ -71,23 +93,128 @@
     }
   }
 
-  &__educ-info {
-    .preview__institution {
-      margin-top: 10px;
-      margin-bottom: 3px;
+  &__contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 13px;
+
+    font-size: 13px;
+  }
+
+  &__educ-info,
+  &__exp-info {
+    .preview-unit__educ-info,
+    .preview-unit__exp-info {
+      margin-bottom: 30px;
+    }
+
+    .preview__info-main-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .preview__institution,
+    .preview__job-title {
+      display: block;
+      align-self: top;
       font-size: 16px;
       font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .preview__degree-program,
+    .preview__company {
+      align-self: top;
     }
 
     .preview__active-years {
       display: block;
-      margin-bottom: 10px;
-      font-size: 14px;
+      margin-bottom: 14px;
+      font-size: 12px;
       font-style: italic;
+    }
+
+    .preview__gpa,
+    .preview__educ-additional-info,
+    .preview__job-responsibility {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .preview__educ-additional-info,
+    .preview__job-responsibility {
+      padding-left: 5px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.4);
+        right: 100%;
+        top: 21%;
+      }
+    }
+
+    .preview__job-responsibility {
+      margin-bottom: 9px;
     }
   }
 
-  &__exp-info {
+  &__skills-info {
+    .preview__skill-container {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 13px;
+    }
+
+    .preview__skill-category {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .preview__skill-item {
+      font-size: 13px;
+      padding-left: 7px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.4);
+        right: 100%;
+        top: 23%;
+      }
+    }
+  }
+
+  &__other-info {
+    .preview__category-item {
+      font-size: 13px;
+      padding-left: 7px;
+      position: relative;
+      margin-bottom: 7px;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.4);
+        right: 100%;
+        top: 23%;
+      }
+    }
   }
 }
 
