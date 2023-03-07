@@ -39,6 +39,24 @@
       transform-origin: left;
     }
   }
+
+  &__toggle-preview {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+    color: var(--color-text-light);
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 35px;
+    background-color: var(--color-button);
+
+    &:hover,
+    &:focus {
+      outline: none;
+      transform: scale(1.2);
+    }
+  }
 }
 
 .switch {

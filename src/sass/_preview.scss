@@ -1,7 +1,111 @@
 .preview {
   &__container {
-    width: 50%;
-    padding: 10px;
     color: var(--color-text);
+    // width: clamp(300px, 50%, 816px);
+    width: 100%;
+    flex-grow: 1;
+    background-color: var(--color-background-preview);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__printable {
+    display: grid;
+    grid-template-columns: 385px 0px;
+    grid-template-rows: 1fr;
+    padding: 15px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    background-color: white;
+    height: 862.5px;
+    width: 600px;
+    color: black;
+  }
+
+  &__main-col {
+    grid-column: 1 / 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    word-wrap: break-word;
+  }
+
+  &__sidebar {
+    grid-column: 2 / 3;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: fit-content;
+  }
+
+  &-title {
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.preview-area {
+  height: fit-content;
+  margin-right: 25px;
+
+  &__basic-info {
+    .preview__name {
+      font-size: 32px;
+    }
+
+    .preview__job-title {
+      font-size: 24px;
+    }
+
+    .preview__self-summary {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+  }
+
+  &__educ-info {
+    .preview__institution {
+      margin-top: 10px;
+      margin-bottom: 3px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .preview__active-years {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+  }
+
+  &__exp-info {
+  }
+}
+
+@media print {
+  .editor {
+    display: none;
+  }
+
+  .preview__container {
+    background-color: white;
+  }
+
+  .preview__printable {
+    display: grid;
+    box-shadow: none;
+  }
+
+  .btn__toggle-preview {
+    display: none;
   }
 }

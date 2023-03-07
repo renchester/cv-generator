@@ -74,6 +74,7 @@ body {
 
   --color-background: #f3f3f4;
   --color-background-dark: #353535;
+  --color-background-preview: #e6e6e6;
   --color-light-1: #f3f3f4;
   --color-light-2: #f4ebd9;
   --color-dark-1: #3a3b37;
@@ -129,6 +130,8 @@ body {
 
 body.dark-mode {
   --color-background: #353535;
+  --color-background-preview: #424242;
+
   --color-text: #f2f5ff;
   --color-text-opposite: #423c3a;
   --color-text-opacity50: #f2f5ff86;
@@ -156,9 +159,21 @@ body.dark-mode {
 }
 
 .App {
+  position: relative;
   place-self: center;
-  width: clamp(500px, 100%, 1200px);
+  // width: clamp(600px, 100%, 1200px);
 
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-width: 1050px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .preview__container {
+    background-color: var(--color-background) !important;
+    margin-bottom: 40px;
+  }
 }
