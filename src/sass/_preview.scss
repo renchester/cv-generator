@@ -24,7 +24,9 @@
     background-color: white;
     height: 862.5px;
     width: 600px;
+    font-family: var(--font-raleway);
     color: black;
+    line-height: normal;
   }
 
   &__main-col {
@@ -50,11 +52,13 @@
   &-title {
     padding-bottom: 5px;
     margin-bottom: 12px;
-    border-bottom: 1px solid black;
+    border-bottom: 1.2px solid var(--color-accent-1);
 
-    font-size: 16px;
+    font-family: var(--font-montserrat);
+    font-size: 12.5px;
     font-weight: bold;
     text-transform: uppercase;
+    color: var(--color-accent-2);
   }
 
   &-unit__educ-info,
@@ -65,13 +69,13 @@
     &::before {
       position: absolute;
       content: '';
-      width: 6.5px;
-      height: 6.5px;
+      width: 5.5px;
+      height: 5.5px;
       border: 3px solid rgba(128, 128, 128, 0.5);
       border-radius: 50%;
       background-color: white;
       left: 0;
-      top: 2%;
+      margin-top: 5px;
     }
   }
 }
@@ -81,16 +85,21 @@
 
   &__basic-info {
     .preview__name {
-      font-size: 32px;
+      font-size: 27px;
+      font-family: var(--font-raleway);
+      font-weight: bold;
+      color: var(--color-accent-1);
     }
 
     .preview__job-title {
-      font-size: 24px;
+      font-size: 21px;
+      font-family: var(--font-montserrat);
+      color: var(--color-accent-1);
     }
 
     .preview__self-summary {
-      margin-top: 10px;
-      font-size: 13px;
+      margin-top: 8px;
+      font-size: 12.25px;
     }
   }
 
@@ -104,12 +113,18 @@
     & .preview__contact-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     & .preview__contact-icon {
       font-variation-settings: 'FILL' 01, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-      font-size: 20px;
+      font-size: 16px;
+      color: var(--color-accent-2);
+    }
+
+    & .preview__contact-content {
+      width: 170px;
+      word-break: break-all;
     }
   }
 
@@ -131,20 +146,22 @@
     .preview__job-title {
       display: block;
       align-self: top;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: bold;
-      margin-bottom: 4px;
+      font-family: var(--font-montserrat);
     }
 
     .preview__degree-program,
     .preview__company {
       align-self: top;
+      font-size: 15px;
     }
 
     .preview__active-years {
       display: block;
+      margin-top: 2px;
       margin-bottom: 14px;
-      font-size: 12px;
+      font-size: 11px;
       font-style: italic;
       text-align: right;
     }
@@ -156,20 +173,21 @@
 
     .preview__educ-additional-info,
     .preview__job-responsibility {
-      font-size: 13px;
       margin-bottom: 5px;
       padding-left: 5px;
       position: relative;
+      font-size: 12.5px;
+      font-family: var(--font-raleway);
 
       &::before {
         position: absolute;
         content: '';
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.4);
         right: 100%;
-        top: 21%;
+        margin-top: 5px;
       }
     }
 
@@ -187,15 +205,17 @@
     }
 
     .preview__skill-category {
-      font-size: 16px;
+      font-size: 13.75px;
       font-weight: bold;
-      margin-bottom: 2px;
+      font-family: var(--font-montserrat);
     }
 
     .preview__skill-item {
-      font-size: 13px;
       padding-left: 7px;
       position: relative;
+      width: 182px;
+      font-size: 12.2px;
+      word-break: break-all;
 
       &::before {
         position: absolute;
@@ -205,17 +225,19 @@
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.4);
         right: 100%;
-        top: 23%;
+        margin-top: 5px;
       }
     }
   }
 
   &__other-info {
     .preview__category-item {
-      font-size: 13px;
       padding-left: 7px;
       position: relative;
       margin-bottom: 7px;
+      width: 182px;
+      font-size: 12.2px;
+      word-break: break-all;
 
       &::before {
         position: absolute;
@@ -225,7 +247,7 @@
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.4);
         right: 100%;
-        top: 23%;
+        margin-top: 5px;
       }
     }
   }
