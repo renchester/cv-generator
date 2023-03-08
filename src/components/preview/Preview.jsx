@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import BasicInfoView from './BasicInfoView';
 import ContactInfoView from './ContactInfoView';
 import EducationInfoView from './EducationInfoView';
