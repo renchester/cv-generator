@@ -154,13 +154,15 @@ function App() {
         >
           visibility
         </button>
-        <button
-          type="button"
-          className="btn__print-preview material-symbols-outlined"
-          onClick={printPreview}
-        >
-          print
-        </button>
+        {previewVisible && (
+          <button
+            type="button"
+            className="btn__print-preview material-symbols-outlined"
+            onClick={printPreview}
+          >
+            print
+          </button>
+        )}
       </div>
     </div>
   );
