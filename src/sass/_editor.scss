@@ -19,13 +19,6 @@
     background-color: var(--color-text-opacity30);
     border-radius: 10px;
   }
-
-  @media screen and (max-width: 1050px) {
-    & {
-      width: 100%;
-      max-height: none;
-    }
-  }
 }
 
 .header {
@@ -134,7 +127,6 @@
     background-color: transparent;
     color: var(--color-text);
     text-indent: var(--text-margin-left);
-    font-size: 16px;
 
     &:focus {
       outline: none;

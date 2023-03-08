@@ -1,0 +1,99 @@
+@use 'base';
+
+@media screen and (max-width: 1050px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .preview__container.preview__container {
+    margin-bottom: 40px;
+    position: fixed;
+    background-color: var(--color-background-opacity50);
+  }
+
+  .editor {
+    width: 100%;
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    --text-base-size: 0.65em;
+    font-size: var(--text-md);
+  }
+
+  .preview__printable {
+    transform: scale(0.65);
+  }
+
+  .preview__container.preview__container {
+    height: 600px;
+  }
+
+  .editor {
+    padding-block: 50px;
+    padding-inline: 10px;
+  }
+
+  .header-title {
+    font-size: var(--text-xxxl);
+  }
+
+  .form-title {
+    font-size: var(--text-xl);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  body {
+    --text-base-size: 0.65em;
+  }
+
+  .preview__printable {
+    position: absolute;
+    transform: scale(0.5);
+  }
+
+  .btn__submit-item {
+    left: auto;
+    right: 10px;
+  }
+
+  .btn__submit {
+    font-size: var(--text-md);
+  }
+
+  .btn__toggle-preview,
+  .btn__print-preview {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .preview__container {
+    height: 350px;
+  }
+  .preview__printable {
+    transform: scale(0.4);
+  }
+}
+
+@media print {
+  .editor {
+    display: none;
+  }
+
+  .preview__container {
+    background-color: white;
+  }
+
+  .preview__printable.preview__printable {
+    display: grid;
+    box-shadow: none;
+  }
+
+  .btn-container__preview.btn-container__preview {
+    display: none;
+  }
+}

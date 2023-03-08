@@ -1,5 +1,6 @@
 .preview {
   &__container {
+    position: relative;
     color: var(--color-text);
     // width: clamp(300px, 50%, 816px);
     width: 100%;
