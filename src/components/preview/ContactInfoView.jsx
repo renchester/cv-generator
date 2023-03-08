@@ -7,7 +7,7 @@ function ContactInfoView(props) {
         <span className="material-symbols-outlined preview__contact-icon icon-mail">
           mail
         </span>
-        <span className="preview__email">
+        <span className="preview__email preview__contact-content">
           {data.email || 'johndoe@site.com'}
         </span>
       </div>
@@ -15,7 +15,7 @@ function ContactInfoView(props) {
         <span className="material-symbols-outlined preview__contact-icon icon-phone">
           smartphone
         </span>
-        <span className="preview__phone-number">
+        <span className="preview__phone-number preview__contact-content">
           {data.phoneNumber || '+111 222 3333'}
         </span>
       </div>
@@ -23,7 +23,7 @@ function ContactInfoView(props) {
         <span className="material-symbols-outlined preview__contact-icon icon-location">
           location_on
         </span>
-        <span className="preview__location">
+        <span className="preview__location preview__contact-content">
           {data.location || 'London, UK'}
         </span>
       </div>
@@ -31,7 +31,7 @@ function ContactInfoView(props) {
         <span className="material-symbols-outlined preview__contact-icon icon-link">
           link
         </span>
-        <span className="preview__website">
+        <span className="preview__website preview__contact-content">
           {data.website || 'linkedin.sample.com/johndoe'}
         </span>
       </div>
