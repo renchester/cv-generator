@@ -52,8 +52,8 @@ table {
   vertical-align: baseline;
   font-family: inherit;
   font-style: inherit;
+  font-size: inherit;
   color: inherit;
-  // font-size: 100%;
   border: none;
   padding: 0;
   margin: 0;
@@ -151,24 +151,21 @@ body.dark-mode {
   --color-button: #1ebee6;
 }
 
-body {
-  min-width: 100vw;
-}
-
 #root {
   display: grid;
   min-height: 100vh;
   width: 100vw;
+  max-width: 100%;
 
   background-color: var(--color-background);
   font-family: var(--font-poppins);
+  font-size: var(--text-sm);
   color: var(--color-text);
 }
 
 .App {
   position: relative;
   place-self: center;
-  // width: clamp(600px, 100%, 1200px);
 
   display: flex;
   flex-direction: row;
